@@ -6,7 +6,7 @@
 #    By: peatjohnston <peatjohnston@student.42.f    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/25 09:57:19 by ekosnick          #+#    #+#              #
-#    Updated: 2024/11/25 15:01:18 by peatjohnsto      ###   ########.fr        #
+#    Updated: 2024/12/09 10:47:56 by peatjohnsto      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ RM = rm -f
 CFLAGS = -Wall -Wextra -Werror
 
 #source 'c' and object 'o' files
-SRCS =	toy.c \
+SRCS =	processtoy.c \
 		../libft/process_xx.c ../libft/process_x.c	\
 		../libft/process_u.c ../libft/process_s.c \
 		../libft/process_p.c ../libft/process_id.c \
@@ -28,6 +28,8 @@ SRCS =	toy.c \
 		../libft/ft_lstmap.c ../libft/ft_atoi.c \
 		../libft/ft_itoa.c ../libft/ft_strdup.c \
 		../libft/ft_strjoin.c ../libft/ft_strlen.c \
+		../libft/ft_isdigit.c ../libft/ft_split.c \
+		../libft/ft_strchr.c
 
 OBJ = $(SRCS:.c=.o)
 
