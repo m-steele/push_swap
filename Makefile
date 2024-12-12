@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: peatjohnston <peatjohnston@student.42.f    +#+  +:+       +#+         #
+#    By: ekosnick <ekosnick@student.42.f>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/25 09:57:19 by ekosnick          #+#    #+#              #
-#    Updated: 2024/12/09 10:47:56 by peatjohnsto      ###   ########.fr        #
+#    Updated: 2024/12/11 17:04:29 by ekosnick         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,8 +16,7 @@ RM = rm -f
 CFLAGS = -Wall -Wextra -Werror
 
 #source 'c' and object 'o' files
-SRCS =	processtoy.c \
-		../libft/process_xx.c ../libft/process_x.c	\
+SRCS =	../libft/process_xx.c ../libft/process_x.c	\
 		../libft/process_u.c ../libft/process_s.c \
 		../libft/process_p.c ../libft/process_id.c \
 		../libft/process_c.c ../libft/ft_printf.c \
@@ -29,14 +28,16 @@ SRCS =	processtoy.c \
 		../libft/ft_itoa.c ../libft/ft_strdup.c \
 		../libft/ft_strjoin.c ../libft/ft_strlen.c \
 		../libft/ft_isdigit.c ../libft/ft_split.c \
-		../libft/ft_strchr.c
+		../libft/ft_strchr.c \
+		push_swap.c not_valid.c start_sort.c \
+		swap.c rotate.c reverse.c push.c
 
 OBJ = $(SRCS:.c=.o)
 
-NAME = pushtoy
+NAME = push_swap
 
-#converts .c files --> .o files in libft.h directory: (-o $@ -->id .o names) ($< --> first rerequisite .c names)
-%.o: %.c libft.h
+#converts .c files --> .o files: (-o $@ -->id .o names) ($< --> first rerequisite .c names)
+%.o: %.c push_swap.h
 	$(CC) $(CFLAGS) -c $< -o $@ 
 
 #creates the library
