@@ -155,6 +155,6 @@ void start_sort(t_list **sta)
 		sa(sta);
 	else if (ft_lstsize(*sta) == 3)
 		sort3(sta);
-	else
-		sort(sta);	
+	// else
+	// 	sort(sta);	
 }

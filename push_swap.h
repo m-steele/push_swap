@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekosnick <ekosnick@student.42.f>           +#+  +:+       +#+        */
+/*   By: ekosnick <ekosnick@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 13:50:33 by ekosnick          #+#    #+#             */
-/*   Updated: 2024/12/11 16:49:50 by ekosnick         ###   ########.fr       */
+/*   Updated: 2024/12/17 13:17:34 by ekosnick         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,11 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <limits.h>
-# include "/home/peatjohnston/_42/github/libft/libft.h"
+# include "../libft/libft.h"
+
+// NOTE THAT WHEN WE ARE AT HOME WE NEED THIS DIRECTORY
+// include "/home/peatjohnston/_42/github/libft/libft.h"
+// # include "../libft/libft.h"
 
 // typedef struct s_list
 // {
@@ -48,11 +52,15 @@ void		ss(t_list **sta, t_list **stb);
 // /*rotate*/
 void		ra(t_list **sta);
 void		rb(t_list **stb);
+void        ra_no_write(t_list **sta);
+void        rb_no_write(t_list **stb);
 void		rr(t_list **sta, t_list **stb);
 
 // /*reverse*/
 void		rra(t_list **sta);
 void		rrb(t_list **stb);
+void        rra_no_write(t_list **sta);
+void        rrb_no_write(t_list **stb);
 void		rrr(t_list **sta, t_list **stb);
 
 #endif

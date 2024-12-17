@@ -1,5 +1,6 @@
 
-#include "/home/peatjohnston/_42/github/libft/libft.h"
+#include "../libft/libft.h"
+// #include "/home/peatjohnston/_42/github/libft/libft.h"
 
 void start_sort(t_list **sta)
 {

@@ -1,5 +1,6 @@
 {
 	"files.associations": {
 		"*.tcc": "c"
-	}
+	},
+	"makefile.configureOnOpen": true
 }
