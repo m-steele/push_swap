@@ -39,9 +39,93 @@ void sort3(t_list **sta)
 		sa(sta);
 }
 
-// CONSIDER CHANGIGN THE NAME OF CONTENT TO 'C'
-// AND NEXT TO 'N' TO SAVE SPACE
+void sort4(t_list **sta)
+{
+	t_list	*stb = NULL;
+	int		fst;
+	int		sec;
+	int		thr;
+	int		frt;
 
+	fst = ft_atoi((*sta)->content);
+	sec = ft_atoi((*sta)->next->content);
+	thr = ft_atoi((*sta)->next->next->content);
+	frt = ft_atoi((*sta)->next->next->next->content);
+
+// we will find the lowest value, push to b, sort3
+// then push back to a
+	if (fst == min_sta(*sta))
+	{
+		ptob(sta, &stb);
+		sort3(sta);
+		ptoa(sta, &stb);
+	}
+	else if (sec == min_sta(*sta))
+	{
+		ra(sta);
+		ptob(sta, &stb);
+		sort3(sta);
+		ptoa(sta, &stb);
+	}
+	else if (thr == min_sta(*sta))
+	{
+		rra(sta);
+		rra(sta);
+		ptob(sta, &stb);
+		sort3(sta);
+		ptoa(sta, &stb);
+	}
+	else
+	{
+		rra(sta);
+		ptob(sta, &stb);
+		sort3(sta);
+		ptoa(sta, &stb);
+	}
+	ft_printf("A: %s %s %s %s\n", (*sta)->content, (*sta)->next->content, (*sta)->next->next->content, (*sta)->next->next->next->content);
+}
+
+int	min_sta(t_list *sta)
+{
+	int	min;
+	int	x;
+
+	min = ft_atoi(sta->content);
+	while (sta)
+	{
+		x = ft_atoi(sta->content);
+		if (x < min)
+			min = x;
+		sta = sta->next;
+	}
+	return(min);
+}
+
+// sort() will find the lowsest 4 values, pushing the rest to b
+// then sort4, we could potentially implement this to sort 5 items,
+// ensuring that the lowest 2 are pushed to stack b in the correct order
+// That asside, we will need to find a sorting method to get items from 
+// stack b back to stack a. CHECK THE OLD NOTES BELOW.
+void	sort(t_list **sta)
+{
+	t_list	*stb;
+
+	stb = NULL;
+	while (ft_lstsize(*sta) > 4)
+	{
+		if (ft_atoi((*sta)->content) > (min_sta(*sta) + 3))
+			ptob(sta, &stb);
+		else
+			ra(sta);
+	}
+	sort4(sta);
+	// ft_printf("Min of A: %d\n", min_sta(*sta));
+	while (stb)
+		ptoa(sta, &stb);
+	ft_printf("A: %s %s %s %s %s %s %s\n", (*sta)->content, (*sta)->next->content, (*sta)->next->next->content, (*sta)->next->next->next->content, (*sta)->next->next->next->next->content, (*sta)->next->next->next->next->next->content, (*sta)->next->next->next->next->next->next->content);
+}
+
+/*OLD NOTES OF IDEAS*/
 void	sort(t_list **sta)
 {
 	t_list	*stb;
@@ -99,37 +183,6 @@ void	sort(t_list **sta)
 		/*stack b before pushing to stack a*/
 	}
 }
-/*this can be used to check if the actions are working*/
-// ft_printf("sta: %d\nstb: %d\n", sta, stb);
-// 		ptob(sta, &stb);
-// 		ptob(sta, &stb);
-// 		ptob(sta, &stb);
-// 		sa(sta);
-// 		sb(&stb);
-// 		ss(sta, &stb);
-// 		ra(sta);
-// 		rb(&stb);
-// 		rr(sta, &stb);
-// 		rra(sta);
-// 		rrb(&stb);
-// 		rrr(sta, &stb);
-// 		ptoa(&stb, sta);
-
-int	min_sta(t_list *sta)
-{
-	int	min;
-	int	x;
-
-	min = ft_atoi(sta->content);
-	while (sta)
-	{
-		x = ft_atoi(sta->content);
-		if (x < min)
-			min = x;
-		sta = sta->next;
-	}
-	return(min);
-}
 
 int	max_sta(t_list *sta)
 {
@@ -147,6 +200,9 @@ int	max_sta(t_list *sta)
 	return(max);
 }
 
+// CONSIDER CHANGIGN THE NAME OF CONTENT TO 'C'
+// AND NEXT TO 'N' TO SAVE SPACE
+
 void start_sort(t_list **sta)
 {
 	if (!sta || !*sta)
@@ -155,6 +211,8 @@ void start_sort(t_list **sta)
 		sa(sta);
 	else if (ft_lstsize(*sta) == 3)
 		sort3(sta);
-	// else
-	// 	sort(sta);	
+	else if (ft_lstsize(*sta) == 4)
+		sort4(sta);
+	else
+		sort(sta);
 }

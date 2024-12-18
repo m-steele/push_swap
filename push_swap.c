@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekosnick <ekosnick@student.42.f>           +#+  +:+       +#+        */
+/*   By: ekosnick <ekosnick@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 10:51:11 by peatjohnsto       #+#    #+#             */
-/*   Updated: 2024/12/11 16:50:02 by ekosnick         ###   ########.fr       */
+/*   Updated: 2024/12/18 12:39:31 by ekosnick         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,7 +110,7 @@ int	main(int subitizer, char **beans)
 	// 	ft_printf("Num[%d]: [%s]\n", i, beans[i]);
 	if (subitizer > 1)
 	{
-		len = 0;
+		len = 0; /*NOTE this is your MAX value of counted numbers*/
 		len = process_beans(&nums, beans + 1, " ");
 		if (!len || not_valid(nums))
 		{
@@ -118,6 +118,7 @@ int	main(int subitizer, char **beans)
 			ft_printf("Error\n");
 			return (1);
 		}
+		ft_printf("Number of Items: %d\n", len);
 		sta = 0;
 		while (len--)
 			ft_lstadd_front(&sta, ft_lstnew(nums[len]));
