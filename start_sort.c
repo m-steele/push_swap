@@ -18,9 +18,9 @@ void sort3(t_list **sta)
 	int	sec;
 	int	thr;
 
-	fst = ft_atoi((*sta)->content);
-	sec = ft_atoi((*sta)->next->content);
-	thr = ft_atoi((*sta)->next->next->content);
+	fst = ft_atoi((*sta)->ct);
+	sec = ft_atoi((*sta)->nt->ct);
+	thr = ft_atoi((*sta)->nt->nt->ct);
 	if (fst < sec && fst < thr && sec > thr)
 	{
 		rra(sta);

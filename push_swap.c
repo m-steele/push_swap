@@ -6,7 +6,7 @@
 /*   By: ekosnick <ekosnick@student.42.f>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 10:51:11 by peatjohnsto       #+#    #+#             */
-/*   Updated: 2024/12/11 16:50:02 by ekosnick         ###   ########.fr       */
+/*   Updated: 2024/12/23 10:50:12 by ekosnick         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,11 @@ char **freeme(char **nums, int index)
 	// this will check if the stack is already sorted
 int sorted(t_list *sta)
 {
-	while (sta && sta->next)
+	while (sta && sta->nt)
 	{
-		if (ft_atoi(sta->content) > ft_atoi(sta->next->content))		
+		if (ft_atoi(sta->ct) > ft_atoi(sta->nt->ct))		
 			return (0);
-		sta = sta->next;
+		sta = sta->nt;
 	}
 	return (1);
 }
