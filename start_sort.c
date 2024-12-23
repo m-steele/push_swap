@@ -12,15 +12,28 @@
 
 #include "push_swap.h"
 
+void	print_stack(t_list *sta)
+{
+	ft_printf("Stack:\n");
+	while (sta)
+	{
+		ft_printf("%s\n", sta->ct);
+		sta = sta->nt;
+	}
+}
+
 void sort3(t_list **sta)
 {
 	int	fst;
 	int	sec;
 	int	thr;
 
-	fst = ft_atoi((*sta)->content);
-	sec = ft_atoi((*sta)->next->content);
-	thr = ft_atoi((*sta)->next->next->content);
+	fst = ft_atoi((*sta)->ct);
+	sec = ft_atoi((*sta)->nt->ct);
+	thr = ft_atoi((*sta)->nt->nt->ct);
+
+	if (sorted(*sta))
+		return ;
 	if (fst < sec && fst < thr && sec > thr)
 	{
 		rra(sta);
@@ -45,15 +58,11 @@ void sort4(t_list **sta)
 	int		fst;
 	int		sec;
 	int		thr;
-	int		frt;
 
-	fst = ft_atoi((*sta)->content);
-	sec = ft_atoi((*sta)->next->content);
-	thr = ft_atoi((*sta)->next->next->content);
-	frt = ft_atoi((*sta)->next->next->next->content);
-
-// we will find the lowest value, push to b, sort3
-// then push back to a
+	fst = ft_atoi((*sta)->ct);
+	sec = ft_atoi((*sta)->nt->ct);
+	thr = ft_atoi((*sta)->nt->nt->ct);
+	
 	if (fst == min_sta(*sta))
 	{
 		ptob(sta, &stb);
@@ -78,11 +87,62 @@ void sort4(t_list **sta)
 	else
 	{
 		rra(sta);
-		ptob(sta, &stb);
-		sort3(sta);
-		ptoa(sta, &stb);
+		if (!sorted(*sta))
+		{
+			ptob(sta, &stb);
+			sort3(sta);
+			ptoa(sta, &stb);
+		}
 	}
-	ft_printf("A: %s %s %s %s\n", (*sta)->content, (*sta)->next->content, (*sta)->next->next->content, (*sta)->next->next->next->content);
+	// ft_printf("A: %s %s %s %s\n", (*sta)->ct, (*sta)->nt->ct, (*sta)->nt->nt->ct, (*sta)->nt->nt->nt->ct);
+	// ft_printf("A: %s %s %s %s\n", (stb)->ct, (stb)->nt->ct, (stb)->nt->nt->ct, (stb)->nt->nt->nt->ct);
+}
+/*this function is used when stb is already established*/
+void sort4ord(t_list **sta, t_list **stb)
+{
+	int		fst;
+	int		sec;
+	int		thr;
+
+	fst = ft_atoi((*sta)->ct);
+	sec = ft_atoi((*sta)->nt->ct);
+	thr = ft_atoi((*sta)->nt->nt->ct);
+
+	if (fst == min_sta(*sta))
+	{
+		ptob(sta, stb);
+		sort3(sta);
+		ptoa(sta, stb);
+	}
+	else if (sec == min_sta(*sta))
+	{
+		ra(sta);
+		ptob(sta, stb);
+		sort3(sta);
+		ptoa(sta, stb);
+	}
+	else if (thr == min_sta(*sta))
+	{
+		rra(sta);
+		rra(sta);
+		ptob(sta, stb);
+		sort3(sta);
+		ptoa(sta, stb);
+	}
+	else
+	{
+		rra(sta);
+		if (!sorted(*sta))
+		{
+			ptob(sta, stb);
+			sort3(sta);
+			ptoa(sta, stb);
+		}
+	}
+	// print_stack(*sta);
+	// print_stack(*stb);
+	// ft_printf("A: %s %s %s %s %s %s %s %s\n", (*sta)->ct, (*sta)->nt->ct, (*sta)->nt->nt->ct, (*sta)->nt->nt->nt->ct, (*sta)->nt->nt->nt->nt->ct, (*sta)->nt->nt->nt->nt->nt->ct, (*sta)->nt->nt->nt->nt->nt->nt->ct, (*sta)->nt->nt->nt->nt->nt->nt->nt->ct);
+	// ft_printf("B: %s %s %s %s\n", (*stb)->ct, (*stb)->nt->ct, (*stb)->nt->nt->ct, (*stb)->nt->nt->nt->ct);
 }
 
 int	min_sta(t_list *sta)
@@ -90,22 +150,108 @@ int	min_sta(t_list *sta)
 	int	min;
 	int	x;
 
-	min = ft_atoi(sta->content);
+	min = ft_atoi(sta->ct);
 	while (sta)
 	{
-		x = ft_atoi(sta->content);
+		x = ft_atoi(sta->ct);
 		if (x < min)
 			min = x;
-		sta = sta->next;
+		sta = sta->nt;
 	}
 	return(min);
+}
+
+int	evaluate(int min1, int min2, int i)
+{
+	int	imin1;
+	int	imin2;
+
+	imin1 = ((i/2) - min1);
+	imin2 = ((i/2) - min2);
+
+	if (ft_abs(imin1) > ft_abs(imin2) && imin1 > 1)
+		return (1);
+	else if (ft_abs(imin1) > ft_abs(imin2) && imin1 < 1)
+		return (2);
+	else if (ft_abs(imin1) < ft_abs(imin2) && imin1 > 1)
+		return (3);
+	else/*this will also include if imin1 == imin2 at middle: rrb*/
+		return (4);
+}
+
+void	pusher(int option, int min1, int min2, t_list **sta, t_list **stb)
+{
+	while (*stb)
+	{
+		if (option == 1)
+		{
+		while (ft_atoi((*stb)->ct) != min1 && ft_atoi((*stb)->ct) != min2)
+			ra(stb);
+		ptoa(sta, stb);
+		}
+		else if (option == 2)
+		{
+		while (ft_atoi((*stb)->ct) != min1 && ft_atoi((*stb)->ct) != min2)
+				rra(stb);
+			ptoa(sta, stb);
+		}
+		else if (option == 3)
+		{
+		while (ft_atoi((*stb)->ct) != min1 && ft_atoi((*stb)->ct) != min2)
+				rb(stb);
+			ptoa(sta, stb);
+		}
+		else
+		{
+		while (ft_atoi((*stb)->ct) != min1 && ft_atoi((*stb)->ct) != min2)
+				rrb(stb);
+			ptoa(sta, stb);
+		}
+	/*AFTER THE FIRST PUSH RE-EVALUATE IF THE NEXT ITEM IS WORTH THE PUSH*/
+	// if ()
+	}
+}
+// find out if your next number is closer to the top or bottom
+void	find_next(t_list **sta, t_list **stb)
+{
+	int i; /*total count of stack b*/
+	int j; 
+	int min1; 
+	int min2;
+	int	option; /*option is 1, we will rotate b, else we will rrb*/
+
+	while (*stb && ft_lstsize(*stb) > 3)
+	{	i = -1; /*The idea is that we want to start at the top of the stack*/
+		while (*stb && (*stb)->nt)
+			i++;
+		j = 0;
+		while (*stb && ft_atoi((*stb)->nt->ct) != min_sta(*stb))
+			j++;
+		min1 = j;
+		j = 0;
+		while (*stb && ft_atoi((*stb)->nt->ct) != (min_sta(*stb) + 1))
+ 			j++;
+		min2 = j;
+		option = evaluate(min1, min2, i);
+		pusher(option, min1, min2, sta, stb);
+	}
+}
+
+void	last_push(t_list **sta, t_list **stb)
+{
+	while (*stb)
+	{
+		if ((*stb)->nt)
+			rrb(stb);
+		ptoa(sta, stb);
+		if (!*stb)
+			break ;
+	}
 }
 
 // sort() will find the lowsest 4 values, pushing the rest to b
 // then sort4, we could potentially implement this to sort 5 items,
 // ensuring that the lowest 2 are pushed to stack b in the correct order
-// That asside, we will need to find a sorting method to get items from 
-// stack b back to stack a. CHECK THE OLD NOTES BELOW.
 void	sort(t_list **sta)
 {
 	t_list	*stb;
@@ -113,95 +259,19 @@ void	sort(t_list **sta)
 	stb = NULL;
 	while (ft_lstsize(*sta) > 4)
 	{
-		if (ft_atoi((*sta)->content) > (min_sta(*sta) + 3))
+		if (ft_atoi((*sta)->ct) > (min_sta(*sta) + 3))
 			ptob(sta, &stb);
 		else
 			ra(sta);
 	}
-	sort4(sta);
-	// ft_printf("Min of A: %d\n", min_sta(*sta));
-	while (stb)
-		ptoa(sta, &stb);
-	ft_printf("A: %s %s %s %s %s %s %s\n", (*sta)->content, (*sta)->next->content, (*sta)->next->next->content, (*sta)->next->next->next->content, (*sta)->next->next->next->next->content, (*sta)->next->next->next->next->next->content, (*sta)->next->next->next->next->next->next->content);
+	// print_stack(*sta);/********* */
+	// print_stack(stb);/************ */
+	sort4ord(sta, &stb);
+	while (ft_lstsize(stb) > 4)
+		find_next(sta, &stb);
+	sort4(&stb);
+	last_push(sta, &stb);
 }
-
-/*OLD NOTES OF IDEAS*/
-void	sort(t_list **sta)
-{
-	t_list	*stb;
-	int		tb;
-	int		ta;
-
-	stb = NULL;
-	while (ft_lstsize(*sta) > 3)
-		ptob(sta, &stb);
-	sort3(sta);
-	ta = ft_atoi(*sta->content);
-	tb = ft_atoi(stb->content);
-	while (stb)
-	{
-
-		/*combine these into a double check function
-		char dbcheck(sta, stb) return rr, ss, rrr and utilize action:
-		if (dbcheck == 'rrr')
-			rrr(sta, &stb); etc...
-		else*/
-		if (tb == min_sta(stb) && ta == min_sta(sta))
-			rrr(sta, &stb);
-		if (tb == max_sta(stb) && ta == max_sta(sta))
-			rr(sta, &stb);
-		if (ta < ft_atoi(sta->next->content) && tb < ft_atoi(stb->next->content))
-			ss(sta, &stb);
-
-// if sta is smaller than stb, just push the top of 
-		if (ft_lastsize(sta) < ft_lastsize(stb))
-		{
-			/*but this should consider*/
-			/*the orientation of sta before the push*/
-			prep_a(sta); /*helper function to prep*/
-						/*for what is pushed from b
-						for instance if tb is greater than
-						max_sta or less than min_sta*/
-			ptoa(sta, &stb);
-			sort_a();
-		}
-		else
-		{
-			rot4best(stb); /*rotat_until_best*/
-			ptoa(sta, &stb);
-		}
-		if 
-		(tb < min_sta(sta) || tb > max_sta(sta))
-			ptoa(sta, &stb);
-		
-		/*here is the tricky part, what do we do*/
-		/*to sort the new number on top of the stack?*/
-		
-		else
-
-		/*seems that we should do some type of rotate to */
-		/*stack b before pushing to stack a*/
-	}
-}
-
-int	max_sta(t_list *sta)
-{
-	int	max;
-	int	x;
-
-	max = ft_atoi(sta->content);
-	while (sta)
-	{
-		x = ft_atoi(sta->content);
-		if (x > max)
-			max = x;
-		sta = sta->next;
-	}
-	return(max);
-}
-
-// CONSIDER CHANGIGN THE NAME OF CONTENT TO 'C'
-// AND NEXT TO 'N' TO SAVE SPACE
 
 void start_sort(t_list **sta)
 {

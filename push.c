@@ -6,7 +6,7 @@
 /*   By: ekosnick <ekosnick@student.42.f>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 12:55:45 by ekosnick          #+#    #+#             */
-/*   Updated: 2024/12/12 09:32:02 by ekosnick         ###   ########.fr       */
+/*   Updated: 2024/12/20 12:40:30 by ekosnick         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ void	push(t_list **src, t_list **dst)
 	
 	if (!src || !*src)
 		return ;
-	temp = (*src)->next;
-	(*src)->next = *dst;
+	temp = (*src)->nt;
+	(*src)->nt = *dst;
 	*dst = *src;
 	*src = temp;
 }

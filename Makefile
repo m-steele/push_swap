@@ -6,14 +6,14 @@
 #    By: ekosnick <ekosnick@student.42.f>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/25 09:57:19 by ekosnick          #+#    #+#              #
-#    Updated: 2024/12/11 17:04:29 by ekosnick         ###   ########.fr        #
+#    Updated: 2024/12/22 09:14:05 by ekosnick         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 #compliler and flags
 CC = cc
 RM = rm -f
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 
 #source 'c' and object 'o' files
 SRCS =	../libft/process_xx.c ../libft/process_x.c	\
@@ -28,7 +28,7 @@ SRCS =	../libft/process_xx.c ../libft/process_x.c	\
 		../libft/ft_itoa.c ../libft/ft_strdup.c \
 		../libft/ft_strjoin.c ../libft/ft_strlen.c \
 		../libft/ft_isdigit.c ../libft/ft_split.c \
-		../libft/ft_strchr.c \
+		../libft/ft_strchr.c ../libft/ft_abs.c \
 		push_swap.c not_valid.c start_sort.c \
 		swap.c rotate.c reverse.c push.c
 

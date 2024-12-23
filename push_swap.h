@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekosnick <ekosnick@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ekosnick <ekosnick@student.42.f>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 13:50:33 by ekosnick          #+#    #+#             */
-/*   Updated: 2024/12/18 11:41:27 by ekosnick         ###   ########.fr       */
+/*   Updated: 2024/12/22 10:23:29 by ekosnick         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@
 
 // typedef struct s_list
 // {
-// 	void			*content;
-// 	struct	s_list	*next;
+// 	void			*ct;
+// 	struct	s_list	*nt;
 // } t_list;
 
 /*push_swap*/
-char		**freeme(char **nums, int index);
+// char		**freeme(char **nums, int index);
 int				sorted(t_list *sta);
 int				process_beans(char ***nums, char **beans, char *delim);
 
