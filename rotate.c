@@ -6,7 +6,7 @@
 /*   By: ekosnick <ekosnick@student.42.f>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 12:58:23 by ekosnick          #+#    #+#             */
-/*   Updated: 2024/12/20 12:42:24 by ekosnick         ###   ########.fr       */
+/*   Updated: 2024/12/28 09:32:09 by ekosnick         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	rb(t_list **stb)
 	while (last->nt)
 		last = last->nt;
 	last->nt = first;
-	write(1, "ra\n", 3);
+	write(1, "rb\n", 3);
 }
 
 void	rb_no_write(t_list **stb)

@@ -6,7 +6,7 @@
 /*   By: ekosnick <ekosnick@student.42.f>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 10:51:11 by peatjohnsto       #+#    #+#             */
-/*   Updated: 2024/12/22 11:09:28 by ekosnick         ###   ########.fr       */
+/*   Updated: 2024/12/29 09:41:24 by ekosnick         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,23 +15,24 @@
 // valgrind --leak-check=full --track-origins=yes ./push_swap 5 2 4 9
 
 // cleanup function
-void	freeme(char **nums, int i)
+char	**freeme(char **nums, int i)
 {
 	if (!nums)
-		return ;
-	while (i-- > 0)
-		free(nums[i]);
+		return (NULL);
+	while (i >= 0)
+		free(nums[i--]);
 	free(nums);
+	return (NULL);
 }
-// char **freeme(char **nums, int index)
-// {
-// 	if (!nums)
-// 		return (NULL);
-// 	while (index >= 0)
-// 		free(nums[index--]);
-// 	free (nums);
-// 	return (NULL);
-// }
+
+void clean_and_exit(char **nums, int i, t_list *sta, int exit_code)
+{
+	if (nums)
+		freeme(nums, i - 1);
+	if (sta)
+		ft_lstclear(&sta, free);
+	exit(exit_code);
+}
 
 	// this will check if the stack is already sorted
 int sorted(t_list *sta)
@@ -118,27 +119,27 @@ int	main(int subitizer, char **beans)
 	int		len;
 	char	**nums;
 	t_list	*sta;
+	t_list	*new_node;
 
 	if (subitizer > 1)
 	{
-		len = 0;
 		len = process_beans(&nums, beans + 1, " ");
 		if (!len || not_valid(nums))
-		{
-			freeme(nums, len);
-			ft_printf("Error\n");
-			return (1);
-		}
+			clean_and_exit(nums, len, NULL, 1);
 		ft_printf("Number of Items: %d\n", len); /*This is my counter remove for final*/
 		sta = NULL;
 		while (len--)
-			ft_lstadd_front(&sta, ft_lstnew(nums[len]));
+		{
+			new_node = ft_lstnew(nums[len]);
+			if (!new_node)
+				clean_and_exit(nums, len, sta, 1);
+			ft_lstadd_front(&sta, new_node);
+		}
+		// free(nums);	/*we may need to keep this in the end*/
 		if (!sorted(sta))
 			start_sort(&sta); /*THIS IS WHERE THE REAL FUN WILL BE*/
 		ft_lstclear(&sta, free);
-		free(nums);
-		// freeme(nums, len);
-		// freeme(nums, process_beans(&nums, beans + 1, " ") - 1);
+		// sta = NULL; /*not sure that we really need this...*/
 	}
 	return (0);
 }
