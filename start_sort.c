@@ -28,11 +28,11 @@ void sort3(t_list **sta)
 	int	sec;
 	int	thr;
 
+	if (!sta || !*sta || !(*sta)->nt || !(*sta)->nt->nt)
+		return ;
 	fst = ft_atoi((*sta)->ct);
 	sec = ft_atoi((*sta)->nt->ct);
 	thr = ft_atoi((*sta)->nt->nt->ct);
-
-	// print_stack(*sta); /********* */
 	if (sorted(*sta))
 		return ;
 	if (fst < sec && fst < thr && sec > thr)
@@ -53,24 +53,40 @@ void sort3(t_list **sta)
 		sa(sta);
 }
 
+// this works!!!!!!!!!
 void sort4(t_list **sta)
 {
+	int min;
 	t_list	*stb;
-
+	
 	stb = NULL;
-	if(!sta || !*sta || !(*sta)->nt)
+	if (!sta || !*sta || !(*sta)->nt)
 		return ;
-	while (ft_lstsize(*sta) > 3)
+	min = min_sta(*sta);
+	if (ft_atoi((*sta)->ct) == min)  /*&& !sorted(*sta)*/
+		ptob(sta, &stb);
+	else if (ft_atoi(ft_lstlast(*sta)->ct) == min)
 	{
-		if (ft_atoi((*sta)->ct) == min_sta(*sta))
+		rra(sta);
+		if (!sorted(*sta))
 			ptob(sta, &stb);
-		else
-			ra(sta);
 	}
-	sort3(sta);
+	else 
+	{	
+		while ((ft_lstsize(*sta) > 3) && ft_atoi((*sta)->ct) != min)
+		{
+			ra(sta);
+			if (ft_atoi((*sta)->ct) == min && !sorted(*sta))
+				ptob(sta, &stb);
+		}
+	}
+	if (ft_lstsize(*sta) == 3)
+		sort3(sta);
 	if (stb)
 		ptoa(sta, &stb);
 }
+
+
 
 /*this function is used when stb is already established*/
 void sort4ord(t_list **sta, t_list **stb)
