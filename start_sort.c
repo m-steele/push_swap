@@ -14,7 +14,6 @@
 
 void	print_stack(t_list *sta)
 {
-	ft_printf("Stack:\n");
 	while (sta)
 	{
 		ft_printf("%s\n", sta->ct);
@@ -22,144 +21,25 @@ void	print_stack(t_list *sta)
 	}
 }
 
-void sort3(t_list **sta)
+int	evaluate(t_list *stb, int min1, int min2, int i)
 {
-	int	fst;
-	int	sec;
-	int	thr;
-
-	if (!sta || !*sta || !(*sta)->nt || !(*sta)->nt->nt)
-		return ;
-	fst = ft_atoi((*sta)->ct);
-	sec = ft_atoi((*sta)->nt->ct);
-	thr = ft_atoi((*sta)->nt->nt->ct);
-	if (sorted(*sta))
-		return ;
-	if (fst < sec && fst < thr && sec > thr)
-	{
-		rra(sta);
-		sa(sta);
-	}
-	else if (fst > sec && sec > thr)
-	{
-		sa(sta);
-		rra(sta);
-	}
-	else if (fst < sec && sec > thr)
-		rra(sta);
-	else if (fst > sec && fst > thr)
-		ra(sta);
-	else
-		sa(sta);
-}
-
-// this works!!!!!!!!!
-void sort4(t_list **sta)
-{
-	int min;
-	t_list	*stb;
-	
-	stb = NULL;
-	if (!sta || !*sta || !(*sta)->nt)
-		return ;
-	min = min_sta(*sta);
-	if (ft_atoi((*sta)->ct) == min)  /*&& !sorted(*sta)*/
-		ptob(sta, &stb);
-	else if (ft_atoi(ft_lstlast(*sta)->ct) == min)
-	{
-		rra(sta);
-		if (!sorted(*sta))
-			ptob(sta, &stb);
-	}
-	else 
-	{	
-		while ((ft_lstsize(*sta) > 3) && ft_atoi((*sta)->ct) != min)
-		{
-			ra(sta);
-			if (ft_atoi((*sta)->ct) == min && !sorted(*sta))
-				ptob(sta, &stb);
-		}
-	}
-	if (ft_lstsize(*sta) == 3)
-		sort3(sta);
-	if (stb)
-		ptoa(sta, &stb);
-}
-
-
-
-/*this function is used when stb is already established*/
-void sort4ord(t_list **sta, t_list **stb)
-{
-	int		fst;
-	int		sec;
-	int		thr;
-
-	fst = ft_atoi((*sta)->ct);
-	sec = ft_atoi((*sta)->nt->ct);
-	thr = ft_atoi((*sta)->nt->nt->ct);
-
-	if (fst == min_sta(*sta))
-	{
-		ptob(sta, stb);
-		sort3(sta);
-		ptoa(sta, stb);
-	}
-	else if (sec == min_sta(*sta))
-	{
-		ra(sta);
-		ptob(sta, stb);
-		sort3(sta);
-		ptoa(sta, stb);
-	}
-	else if (thr == min_sta(*sta))
-	{
-		rra(sta);
-		rra(sta);
-		ptob(sta, stb);
-		sort3(sta);
-		ptoa(sta, stb);
-	}
-	else
-	{
-		rra(sta);
-		if (!sorted(*sta))
-		{
-			ptob(sta, stb);
-			sort3(sta);
-			ptoa(sta, stb);
-		}
-	}
-	// print_stack(*sta);
-	// print_stack(*stb);
-	// ft_printf("A: %s %s %s %s %s %s %s %s\n", (*sta)->ct, (*sta)->nt->ct, (*sta)->nt->nt->ct, (*sta)->nt->nt->nt->ct, (*sta)->nt->nt->nt->nt->ct, (*sta)->nt->nt->nt->nt->nt->ct, (*sta)->nt->nt->nt->nt->nt->nt->ct, (*sta)->nt->nt->nt->nt->nt->nt->nt->ct);
-	// ft_printf("B: %s %s %s %s\n", (*stb)->ct, (*stb)->nt->ct, (*stb)->nt->nt->ct, (*stb)->nt->nt->nt->ct);
-}
-
-int	min_sta(t_list *sta)
-{
-	int	min;
-	int	x;
-
-	min = ft_atoi(sta->ct);
-	while (sta)
-	{
-		x = ft_atoi(sta->ct);
-		if (x < min)
-			min = x;
-		sta = sta->nt;
-	}
-	return(min);
-}
-
-int	evaluate(int min1, int min2, int i)
-{
+	int	rmin1; /*rank 1 min*/
+	int	rmin2; /*rank 2 min*/
 	int	imin1;
 	int	imin2;
 
-	imin1 = ((i/2) - min1);
-	imin2 = ((i/2) - min2);
-
+	ft_printf("I: %i/n", i); /*currently shows this function is called*/
+	while ((ft_lstsize(stb) != min1) && ft_atoi((stb)->ct) != min1)
+		i++;
+	rmin1 = i;
+	i = 0;
+	while ((ft_lstsize(stb) != min2) && ft_atoi((stb)->ct) != min2)
+		i++;
+	rmin2 = i;
+	imin1 = ((i/2) - rmin1);
+	imin2 = ((i/2) - rmin2);
+	ft_printf("rmin1: %i, rmin2: %i\n", rmin1, rmin2);
+	// ft_printf("I: %i, imin1: %i, imin2: %i\n", i, imin1, imin2);
 	if (ft_abs(imin1) > ft_abs(imin2) && imin1 > 1)
 		return (1);
 	else if (ft_abs(imin1) > ft_abs(imin2) && imin1 < 1)
@@ -202,28 +82,28 @@ void	pusher(int option, int min1, int min2, t_list **sta, t_list **stb)
 	// if ()
 	}
 }
+
 // find out if your next number is closer to the top or bottom
-void	find_next(t_list **sta, t_list **stb)
+// mUST USE THE EVALUATOR FUNCTION, BUT DOES NOT LOOK RIGHT
+void	find_next(int *sm_bs, t_list **sta, t_list **stb)
 {
 	int i; /*total count of stack b*/
-	int j; 
-	int min1; 
-	int min2;
+	int min1 = sm_bs[0];
+	int min2 = sm_bs[1];
 	int	option; /*option is 1, we will rotate b, else we will rrb*/
 
+	min1 = sm_bs[0];
+	min2 = sm_bs[1];
+	// ft_printf("min1: %d, min2: %d\n", sm_bs[0], sm_bs[1]); /*SHOWS THAT SMALLEST 2 IN B ARE ALLOCATED*/
+
+/********************************************************* */
+/*THERE HAS TO BE A PROBOLEM AT THIS POINT, START DEBUGGING HERE*/
 	while (*stb && ft_lstsize(*stb) > 3)
-	{	i = -1; /*The idea is that we want to start at the top of the stack*/
+	{	
+		i = -1;
 		while (*stb && (*stb)->nt)
 			i++;
-		j = 0;
-		while (*stb && ft_atoi((*stb)->nt->ct) != min_sta(*stb))
-			j++;
-		min1 = j;
-		j = 0;
-		while (*stb && ft_atoi((*stb)->nt->ct) != (min_sta(*stb) + 1))
- 			j++;
-		min2 = j;
-		option = evaluate(min1, min2, i);
+		option = evaluate(*stb, min1, min2, i);
 		pusher(option, min1, min2, sta, stb);
 	}
 }
@@ -235,33 +115,41 @@ void	last_push(t_list **sta, t_list **stb)
 		if ((*stb)->nt)
 			rrb(stb);
 		ptoa(sta, stb);
+		ra(sta);
 		if (!*stb)
 			break ;
 	}
 }
-
 // sort() will find the lowsest 4 values, pushing the rest to b
-// then sort4, we could potentially implement this to sort 5 items,
-// ensuring that the lowest 2 are pushed to stack b in the correct order
+// then sort4, we could potentially implement this to sort 5 items
 void	sort(t_list **sta)
 {
-	t_list	*stb;
+	t_list	*stb = NULL;
+	int		*sm_as;
+	int		*sm_bs;
 
-	stb = NULL;
+	sm_as = find_n_smallest(*sta, 4);
+	// ft_printf("sm_as: %d, %d, %d, %d\n", sm_as[0], sm_as[1], sm_as[2], sm_as[3]);
+	if (!sm_as)
+		return;
 	while (ft_lstsize(*sta) > 4)
 	{
-		if (ft_atoi((*sta)->ct) > (min_sta(*sta) + 3))
+		if (!is_in_smallest(ft_atoi((*sta)->ct), sm_as, 4))
 			ptob(sta, &stb);
 		else
 			ra(sta);
 	}
+	free(sm_as);
+	sm_bs = find_n_smallest(stb, 2);
+	// ft_printf("sm_bs: %d, %d\n", sm_as[0], sm_as[1]);
+	// ft_printf("STA_after_ptob_______\n");
 	// print_stack(*sta);/********* */
-	// print_stack(stb);/************ */
+	// ft_printf("STB_after_ptob_______\n");
+	// print_stack(stb);/********* */
 	sort4ord(sta, &stb);
-	while (ft_lstsize(stb) > 4)
-		find_next(sta, &stb);
-	sort4(&stb);
-	last_push(sta, &stb);
+	find_next(sm_bs, sta, &stb);
+	free(sm_bs);
+	last_push(sta, &stb); /*may need last in reverse order then ptoa and ra*/
 }
 
 void start_sort(t_list **sta)
@@ -274,6 +162,6 @@ void start_sort(t_list **sta)
 		sort3(sta);
 	else if (ft_lstsize(*sta) == 4)
 		sort4(sta);
-	else
+	else if (ft_lstsize(*sta) > 4)
 		sort(sta);
 }

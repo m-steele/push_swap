@@ -6,7 +6,7 @@
 /*   By: ekosnick <ekosnick@student.42.f>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 13:50:33 by ekosnick          #+#    #+#             */
-/*   Updated: 2024/12/22 10:23:29 by ekosnick         ###   ########.fr       */
+/*   Updated: 2025/01/02 15:36:42 by ekosnick         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,20 +31,27 @@
 
 /*push_swap*/
 // char		**freeme(char **nums, int index);
-int				sorted(t_list *sta);
-int				process_beans(char ***nums, char **beans, char *delim);
+int			sorted(t_list *sta);
+int			process_beans(char ***nums, char **beans, char *delim);
+
+/*small_sorts*/
+void		sort3(t_list **sta);
+void		sort4(t_list **sta);
+void		sort4ord(t_list **sta, t_list **stb);
+int			min_sta(t_list *sta);
 
 /*start_sort*/
-void			start_sort(t_list **sta);
-void			sort3(t_list **sta);
-void			sort4(t_list **sta);
-int             min_sta(t_list *sta);
-int				not_valid(char **nums);
+void		start_sort(t_list **sta);
+int			not_valid(char **nums);
+
+/*find_n_smallest*/
+int			*find_n_smallest(t_list *sta, int n);
+int			is_in_smallest(int value, int *smallest, int n);
 
 /*push*/
-void			ptoa(t_list **sta, t_list **stb);
-void			ptob(t_list **sta, t_list **stb);
-void			push(t_list **src, t_list **dst);
+void		ptoa(t_list **sta, t_list **stb);
+void		ptob(t_list **sta, t_list **stb);
+void		push(t_list **src, t_list **dst);
 
 /*swap*/
 void		sa(t_list **sta);

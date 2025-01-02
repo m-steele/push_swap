@@ -6,7 +6,7 @@
 #    By: ekosnick <ekosnick@student.42.f>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/25 09:57:19 by ekosnick          #+#    #+#              #
-#    Updated: 2024/12/22 09:14:05 by ekosnick         ###   ########.fr        #
+#    Updated: 2025/01/02 15:34:49 by ekosnick         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,8 @@ SRCS =	../libft/process_xx.c ../libft/process_x.c	\
 		../libft/ft_isdigit.c ../libft/ft_split.c \
 		../libft/ft_strchr.c ../libft/ft_abs.c \
 		push_swap.c not_valid.c start_sort.c \
-		swap.c rotate.c reverse.c push.c
+		swap.c rotate.c reverse.c push.c find_n_smallest.c\
+		small_sorts.c
 
 OBJ = $(SRCS:.c=.o)
 
