@@ -6,7 +6,7 @@
 /*   By: ekosnick <ekosnick@student.42.f>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 12:20:04 by ekosnick          #+#    #+#             */
-/*   Updated: 2025/01/02 10:58:45 by ekosnick         ###   ########.fr       */
+/*   Updated: 2025/01/06 12:45:21 by ekosnick         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -278,6 +278,65 @@ void	find_next(t_list **sta, t_list **stb)
 		pusher(option, min1, min2, sta, stb);
 	}
 }
+
+
+void	find_next(int *sm_bs, t_list **sta, t_list **stb)
+{
+	int min1 = sm_bs[0];
+	int min2 = sm_bs[1];
+	int	option;
+
+	ft_printf("min1: %d, min2: %d\n", sm_bs[0], sm_bs[1]);
+	while (*stb && ft_lstsize(*stb) > 3)
+	{	
+		option = evaluate(*stb, min1, min2);
+		ft_printf("Option = %d\n", option);
+		pusher(option, min1, min2, sta, stb);
+		// Re-evaluate the next item after each push
+		if (*stb)
+		{
+			sm_bs = find_n_smallest(*stb, 2);
+			min1 = sm_bs[0];
+			min2 = sm_bs[1];
+			free(sm_bs);
+		}
+	}
+}
+
+void	find_next(int *sm_bs, t_list **sta, t_list **stb)
+{
+	int i; /*total count of stack b*/
+	int min1 = sm_bs[0];
+	int min2 = sm_bs[1];
+	int	option; /*option is 1, we will rotate b, else we will rrb*/
+
+	min1 = sm_bs[0];
+	min2 = sm_bs[1];
+	ft_printf("min1: %d, min2: %d\n", sm_bs[0], sm_bs[1]); /*SHOWS THAT SMALLEST 2 IN B ARE ALLOCATED*/
+/********************************************************* */
+/*THERE HAS TO BE A PROBOLEM AT THIS POINT, START DEBUGGING HERE*/
+	while (*stb && ft_lstsize(*stb) > 3)
+	{	
+		i = -1; /*was originally -1*/
+		while (*stb && (*stb)->nt)
+			i++;
+		option = evaluate(*stb, min1, min2); /*		option = evaluate(*stb, min1, min2, i); not sure why i was */
+		ft_printf("Option = %d\n", option);
+		pusher(option, min1, min2, sta, stb);
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 void	last_push(t_list **sta, t_list **stb)
 {
