@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   betterstartsort.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekosnick <ekosnick@student.42.f>           +#+  +:+       +#+        */
+/*   By: ekosnick <ekosnick@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 12:20:04 by ekosnick          #+#    #+#             */
-/*   Updated: 2025/01/06 12:45:21 by ekosnick         ###   ########.fr       */
+/*   Updated: 2025/01/08 10:43:04 by ekosnick         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -203,23 +203,6 @@ int	min_sta(t_list *sta)
 // 	int	x;
 // }
 
-int	evaluate(int min1, int min2, int i)
-{
-	int	imin1;
-	int	imin2;
-
-	imin1 = ((i/2) - min1);
-	imin2 = ((i/2) - min2);
-
-	if (ft_abs(imin1) > ft_abs(imin2) && imin1 > 1)
-		return (1);
-	else if (ft_abs(imin1) > ft_abs(imin2) && imin1 < 1)
-		return (2);
-	else if (ft_abs(imin1) < ft_abs(imin2) && imin1 > 1)
-		return (3);
-	else/*this will also include if imin1 == imin2 at middle: rrb*/
-		return (4);
-}
 
 void	pusher(int option, int min1, int min2, t_list **sta, t_list **stb)
 {
@@ -279,7 +262,6 @@ void	find_next(t_list **sta, t_list **stb)
 	}
 }
 
-
 void	find_next(int *sm_bs, t_list **sta, t_list **stb)
 {
 	int min1 = sm_bs[0];
@@ -325,11 +307,6 @@ void	find_next(int *sm_bs, t_list **sta, t_list **stb)
 		pusher(option, min1, min2, sta, stb);
 	}
 }
-
-
-
-
-
 
 
 
