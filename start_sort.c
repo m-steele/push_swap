@@ -30,7 +30,6 @@ int	evaluate(t_list *stb, int min1, int min2)
 	int i = 0;
 
 		// while (*stb && ft_atoi((*stb)->nt->ct) != min_sta(*stb))
-	ft_printf("I: %i\n", i); /*currently this function is called but crashes at 33*/
 	while (stb && ft_atoi((stb)->ct) != min1)	/*(ft_lstsize(stb) != min1) && */
 	{
 		stb = stb->nt;/*note that this could be stb->ct or stb->nt->ct*/
@@ -63,13 +62,9 @@ void	pusher(int option, int min1, int min2, t_list **sta, t_list **stb)
 	ft_printf("OPTION: %i, rmin1: %i, rmin2: %i\n", option, min1, min2);
 	ft_printf("STACK B:\n");
 	print_stack(*stb);
-	// while (*stb)
-	// {
-
-	// PRETTY SURE THE WHILE LOOP ABOVE CREATES THE INFINITE LOOP -> delete it
 	// 1.
 	// THERE IS AN ISSUE WIHT THE LOGIC BELOW AS WE SHOULD NOT BE USING
-	// ra OR rra --> double check the logic wiht the options given from evaluate()
+	// ra OR rra --> double check the logic with the options given from evaluate()
 	// 2.
 	// 	ALSO: THERE IS A PROBLEM WIHT THE LOGIC OF PUSING THE SMALLEST 2 TO A
 	// BECUASE THERE IS A SCENARIO WHERE THE SMALLEST IS NOT PUSHED TO A UNTIL THE END
@@ -77,7 +72,7 @@ void	pusher(int option, int min1, int min2, t_list **sta, t_list **stb)
 	// ARE HANDLED
 	// 3.
 	// YOU MAY WANT TO KEEP THE HIGHEST 4 IN STACK A, THEN PUSH THE HIGHEST
-	// 2 FROM STACK B TO A, THEN SORT SORT
+	// 2 FROM STACK B TO A, THEN START SORT
 		if (option == 1)
 		{
 		while (ft_atoi((*stb)->ct) != min1 && ft_atoi((*stb)->ct) != min2)
@@ -105,7 +100,6 @@ void	pusher(int option, int min1, int min2, t_list **sta, t_list **stb)
 				rrb(stb);
 		if (*stb)
 			ptoa(sta, stb);
-		// }
 	}	
 }
 
@@ -122,7 +116,6 @@ void	last_push(t_list **sta, t_list **stb)
 	}
 }
 // find out if your next number is closer to the top or bottom
-// MUST USE THE EVALUATOR FUNCTION, BUT DOES NOT LOOK RIGHT
 void	find_next(int *sm_bs, t_list **sta, t_list **stb)
 {
 	int min1 = sm_bs[0];
@@ -138,7 +131,7 @@ void	find_next(int *sm_bs, t_list **sta, t_list **stb)
 		// Re-evaluate the next item after each push
 		if (*stb)
 		{
-			sm_bs = find_n_smallest(*stb, 2); /*part of the infinite loop; pusher not pushing so the while loop keeps printing*/
+			sm_bs = find_n_smallest(*stb, 2);
 			min1 = sm_bs[0];
 			min2 = sm_bs[1];
 			free(sm_bs);
@@ -173,7 +166,7 @@ void	sort(t_list **sta)
 	ft_printf("STA after find_next:\n");
 	print_stack(*sta);/********* */
 	free(sm_bs);
-	// NOTE THAT last_push is now in find_next
+	// NOTE THAT last_push is now in find_next()
 	// last_push(sta, &stb); /*may need last in reverse order then ptoa and ra*/
 }
 

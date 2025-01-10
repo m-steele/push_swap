@@ -1,60 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   find_n_smallest.c                                  :+:      :+:    :+:   */
+/*   find_n_biggest.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ekosnick <ekosnick@student.42.f>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 12:33:11 by ekosnick          #+#    #+#             */
-/*   Updated: 2025/01/10 12:30:20 by ekosnick         ###   ########.fr       */
+/*   Updated: 2025/01/10 12:35:18 by ekosnick         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// int	*find_n_smallest(t_list *sta, int n)
-// {
-// 	int		*smallest;
-// 	int 	val;
-// 	int		i;
-// 	int		j;
+// NOTE WE NEED TO CHANGE THE LOGIC SO THAT THE LARGEST OF THE STACK ARE FOUND
+// AT THE MOMENT IT IS SET FOR THE SMALLEST --SEE BELOW
 
-// 	smallest = malloc(sizeof(int) * n);
-// 	if (!smallest)
-// 		return (NULL);
-// 	i = 0;
-// 	while (i < n)
-// 		smallest[i++] = INT_MAX;
-// 	while (sta)
-// 	{
-// 		val = ft_atoi(sta->ct);
-// 		i = 0;
-// 		while (i < n)
-// 		{
-// 			if (val < smallest[i])
-// 			{
-// 				j = n - 1;
-// 				while (j > i)
-// 				{
-// 					smallest[j] = smallest[j - 1];
-// 					j--;
-// 				}
-// 				smallest[i] = val;
-// 				break;
-// 			}
-// 			i++;
-// 		}
-// 		sta = sta->nt;
-// 	}
-// 	ft_printf("Smallest: ");
-// 	i = 0;
-// 	while (i < n)
-// 		ft_printf("%d ", smallest[i++]);
-// 	ft_printf("\n");
-// 	return (smallest);
-// }
-
-void	init_sm_array(int *arr, int n)
+void	init_bg_array(int *arr, int n)
 {
 	int	i;
 
@@ -63,7 +24,7 @@ void	init_sm_array(int *arr, int n)
 		arr[i++] = INT_MAX;
 }
 
-void	sm_array(int *arr, int n, int val)
+void	bg_array(int *arr, int n, int val)
 {
 	int	i;
 	int	j;
@@ -86,41 +47,41 @@ void	sm_array(int *arr, int n, int val)
 	}
 }
 
-int	*find_n_smallest(t_list *sta, int n)
+int	*find_n_biggest(t_list *sta, int n)
 {
-	int	*smallest;
+	int	*biggest;
 	int	val;
 
-	smallest = malloc(sizeof(int) * n);
-	if (!smallest)
+	biggest = malloc(sizeof(int) * n);
+	if (!biggest)
 		return (NULL);
-	init_sm_array(smallest, n);
+	init_sm_array(biggest, n); /*check biggest logic from here*/
 	while (sta)
 	{
 		val = ft_atoi(sta->ct);
-		sm_array(smallest, n, val);
+		sm_array(biggest, n, val);
 		sta = sta->nt;
 	}
 	int i = 0;
-	ft_printf("Smallest: ");
+	ft_printf("Biggest: ");
 	while (i < n)
 	{
-		ft_printf("%d ", smallest[i]);
+		ft_printf("%d ", biggest[i]);
 		i++;
 	}
 	ft_printf("\n");
-	return (smallest);
+	return (biggest);
 }
 
 // Helper function to check if a value is among the smallest
-int	is_in_smallest(int value, int *smallest, int n)
+int	is_in_biggest(int value, int *biggest, int n)
 {
 	int i;
 
 	i = 0;
 	while (i < n)
 	{
-		if (value == smallest[i])
+		if (value == biggest[i])
 			return (1);
 		i++;
 	}
