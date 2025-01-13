@@ -12,26 +12,15 @@
 
 #include "push_swap.h"
 
-void	print_stack(t_list *sta)
+int	all_smalls_ptob(t_list *sta, int *smallest, int n)
 {
 	while (sta)
 	{
-		ft_printf("%s\n", sta->ct);
+		if (is_in_smallest(ft_atoi(sta->ct), smallest, n))
+			return (0);
 		sta = sta->nt;
 	}
-}
-
-void	last_push(t_list **sta, t_list **stb)
-{
-	while (*stb)
-	{
-		if ((*stb)->nt)
-			rrb(stb);
-		ptoa(sta, stb);
-		ra(sta);
-		if (!*stb)
-			break ;
-	}
+	return (1);
 }
 
 // sort() will push 50% of lowest values from A to B, iteratively the next 50% lowest
@@ -47,33 +36,39 @@ void	sort(t_list **sta)
 	{
 	n = (ft_lstsize(*sta) / 2);
 	sm_as = find_n_smallest(*sta, n);
-	ft_printf("sm_as --> (lstsize/2): %d\n", n);
+	// ft_printf("sm_as --> (lstsize/2): %d\n", n);
 	// ft_printf("sm_as: %d, %d, %d, %d\n", sm_as[0], sm_as[1], sm_as[2], sm_as[3]);
 		if (!sm_as)
 			return;
-		while (ft_lstsize(*sta) > n + 1)
+// WHY ARE WE NOT GETTING THE LAST SMALLEST IN THE LINKED LIST? AND IF WE ADD ONE IT IS AN INFINITE LOOP
+// USE A CONDITIONAL TO SET THE THE LOOP
+		// while (ft_lstsize(*sta) > n + 1)
+		while (!all_smalls_ptob(*sta, sm_as, n))
 		{
-			ft_printf("sm_as --> (lstsize/2): %d\n", n);
+			ft_printf("sm_as or n --> (lstsize/2): %d\n", n);
 			ft_printf("TOP of sta: %s\n", (*sta)->ct);
 			if (is_in_smallest(ft_atoi((*sta)->ct), sm_as, n)) /*Just changed this from !is_in... to is_in...*/
 				ptob(sta, &stb);
 			else
 				ra(sta);
-			ft_printf("SIZE of sta: %d\n", ft_lstsize(*sta));
+			// ft_printf("SIZE of sta: %d\n", ft_lstsize(*sta));
 		}
-		ft_printf("STA after Push to B Loop:\n");
+		ft_printf("STA and STB after PtoB() Loop:\n");
 		print_stack(*sta);/*************************** */
+		ft_printf("\n");
+		print_stack(stb);/*************************** */
+		ft_printf("\n");
 		free(sm_as);
 	}
 	sort4(sta);
+	ft_printf("STA after SORT_4():\n");
+	print_stack(*sta);/*************************** */
+	ft_printf("\n");
 	while (stb)
 	{
-		ft_printf("start push_ops()\n");
+		// ft_printf("start push_ops()\n");
 		push_ops(sta, &stb);
 	}
-	// free(sm_bs);
-	// find_next(sm_bs, sta, &stb); /*replaced with push_ops()*/
-	// last_push(sta, &stb); /*may need last in reverse order then ptoa and ra*/
 }
 
 void start_sort(t_list **sta)

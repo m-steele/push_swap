@@ -6,53 +6,11 @@
 /*   By: ekosnick <ekosnick@student.42.f>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 12:33:11 by ekosnick          #+#    #+#             */
-/*   Updated: 2025/01/10 12:30:20 by ekosnick         ###   ########.fr       */
+/*   Updated: 2025/01/13 14:29:34 by ekosnick         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-// int	*find_n_smallest(t_list *sta, int n)
-// {
-// 	int		*smallest;
-// 	int 	val;
-// 	int		i;
-// 	int		j;
-
-// 	smallest = malloc(sizeof(int) * n);
-// 	if (!smallest)
-// 		return (NULL);
-// 	i = 0;
-// 	while (i < n)
-// 		smallest[i++] = INT_MAX;
-// 	while (sta)
-// 	{
-// 		val = ft_atoi(sta->ct);
-// 		i = 0;
-// 		while (i < n)
-// 		{
-// 			if (val < smallest[i])
-// 			{
-// 				j = n - 1;
-// 				while (j > i)
-// 				{
-// 					smallest[j] = smallest[j - 1];
-// 					j--;
-// 				}
-// 				smallest[i] = val;
-// 				break;
-// 			}
-// 			i++;
-// 		}
-// 		sta = sta->nt;
-// 	}
-// 	ft_printf("Smallest: ");
-// 	i = 0;
-// 	while (i < n)
-// 		ft_printf("%d ", smallest[i++]);
-// 	ft_printf("\n");
-// 	return (smallest);
-// }
 
 void	init_sm_array(int *arr, int n)
 {

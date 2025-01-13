@@ -6,7 +6,7 @@
 /*   By: ekosnick <ekosnick@student.42.f>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 13:50:33 by ekosnick          #+#    #+#             */
-/*   Updated: 2025/01/13 10:02:40 by ekosnick         ###   ########.fr       */
+/*   Updated: 2025/01/13 13:17:34 by ekosnick         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@
 // char		**freeme(char **nums, int index);
 int			sorted(t_list *sta);
 int			process_beans(char ***nums, char **beans, char *delim);
+void		print_stack(t_list *sta);
 
 /*small_sorts*/
 void		sort3(t_list **sta);
