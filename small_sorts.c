@@ -6,7 +6,7 @@
 /*   By: ekosnick <ekosnick@student.42.f>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 15:33:56 by ekosnick          #+#    #+#             */
-/*   Updated: 2025/01/02 15:34:32 by ekosnick         ###   ########.fr       */
+/*   Updated: 2025/01/11 09:47:10 by ekosnick         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,14 +46,14 @@ void sort3(t_list **sta)
 // this works!!!!!!!!!
 void sort4(t_list **sta)
 {
-	int min;
+	int		min;
 	t_list	*stb;
 	
 	stb = NULL;
 	if (!sta || !*sta || !(*sta)->nt)
 		return ;
 	min = min_sta(*sta);
-	if (ft_atoi((*sta)->ct) == min)  /*&& !sorted(*sta)*/
+	if (ft_atoi((*sta)->ct) == min)
 		ptob(sta, &stb);
 	else if (ft_atoi(ft_lstlast(*sta)->ct) == min)
 	{

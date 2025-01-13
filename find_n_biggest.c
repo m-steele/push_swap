@@ -6,7 +6,7 @@
 /*   By: ekosnick <ekosnick@student.42.f>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 12:33:11 by ekosnick          #+#    #+#             */
-/*   Updated: 2025/01/10 12:35:18 by ekosnick         ###   ########.fr       */
+/*   Updated: 2025/01/12 10:04:26 by ekosnick         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	init_bg_array(int *arr, int n)
 
 	i = 0;
 	while (i < n)
-		arr[i++] = INT_MAX;
+		arr[i++] = INT_MIN;
 }
 
 void	bg_array(int *arr, int n, int val)
@@ -32,7 +32,7 @@ void	bg_array(int *arr, int n, int val)
 	i = 0;
 	while (i < n)
 	{
-		if (val < arr[i])
+		if (val > arr[i])
 		{
 			j = n - 1;
 			while (j > i)
@@ -55,11 +55,11 @@ int	*find_n_biggest(t_list *sta, int n)
 	biggest = malloc(sizeof(int) * n);
 	if (!biggest)
 		return (NULL);
-	init_sm_array(biggest, n); /*check biggest logic from here*/
+	init_bg_array(biggest, n);/* Initialize the array with INT_MIN */
 	while (sta)
 	{
 		val = ft_atoi(sta->ct);
-		sm_array(biggest, n, val);
+		bg_array(biggest, n, val);/* Insert the value if it is among the n biggest */
 		sta = sta->nt;
 	}
 	int i = 0;

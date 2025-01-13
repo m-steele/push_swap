@@ -6,17 +6,16 @@
 /*   By: ekosnick <ekosnick@student.42.f>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 10:51:11 by peatjohnsto       #+#    #+#             */
-/*   Updated: 2025/01/10 11:11:29 by ekosnick         ###   ########.fr       */
+/*   Updated: 2025/01/13 11:40:03 by ekosnick         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-// valgrind --leak-check=full --track-origins=yes ./push_swap  5 24 421 9 78 1 549 -41 54 101 38 389 -12 -1 87 999 15882 4 74 45
+// valgrind --leak-check=full --track-origins=yes ./push_swap
 // ARG="5 2 4 9 22 54 41 8 1 89 11 87 21 23 25 46 123 321 5412 84 151 -5 -1 -8"; ./push_swap $ARG | ./checker_linux $ARG
-
-// NEW ISSUE 20240110: checker_linux does not work at home...
-
+// 16 5 10 8 12 1 11 6 19 4 15 9 14 7 13 2 18 3 20 17
+// 5 24 421 9 78 1 549 -41 54 101 38 389 -12 -1 87 999 15882 4 74 45 20 3 14
 // cleanup function
 char	**freeme(char **nums, int i)
 {
@@ -127,7 +126,10 @@ int	main(int subitizer, char **beans)
 	{
 		len = process_beans(&nums, beans + 1, " ");
 		if (!len || not_valid(nums))
+		{
+			ft_printf("Error\n");
 			clean_and_exit(nums, len, NULL, 1);
+		}
 		ft_printf("Number of Items: %d\n", len); /*This is my counter remove for final*/
 		sta = NULL;
 		while (len--)

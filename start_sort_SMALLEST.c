@@ -6,7 +6,7 @@
 /*   By: ekosnick <ekosnick@student.42.f>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 12:20:04 by ekosnick          #+#    #+#             */
-/*   Updated: 2025/01/10 12:38:37 by ekosnick         ###   ########.fr       */
+/*   Updated: 2025/01/12 10:22:58 by ekosnick         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	pusher(int option, int min1, int min2, t_list **sta, t_list **stb)
 	// ARE HANDLED
 	// 3.
 	// YOU MAY WANT TO KEEP THE HIGHEST 4 IN STACK A, THEN PUSH THE HIGHEST
-	// 2 FROM STACK B TO A, THEN SORT SORT
+	// 2 FROM STACK B TO A, THEN START SORT
 		if (option == 1)
 		{
 		while (ft_atoi((*stb)->ct) != min1 && ft_atoi((*stb)->ct) != min2)
@@ -116,7 +116,6 @@ void	last_push(t_list **sta, t_list **stb)
 	}
 }
 // find out if your next number is closer to the top or bottom
-// MUST USE THE EVALUATOR FUNCTION, BUT DOES NOT LOOK RIGHT
 void	find_next(int *sm_bs, t_list **sta, t_list **stb)
 {
 	int min1 = sm_bs[0];
@@ -138,6 +137,8 @@ void	find_next(int *sm_bs, t_list **sta, t_list **stb)
 			free(sm_bs);
 		}
 	}
+	ft_printf("Before lastpush:\n");
+	print_stack(*stb);
 	last_push(sta, stb);
 }
 

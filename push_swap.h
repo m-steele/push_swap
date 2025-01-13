@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekosnick <ekosnick@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ekosnick <ekosnick@student.42.f>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 13:50:33 by ekosnick          #+#    #+#             */
-/*   Updated: 2025/01/08 12:07:47 by ekosnick         ###   ########.fr       */
+/*   Updated: 2025/01/13 10:02:40 by ekosnick         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,15 @@ int			not_valid(char **nums);
 /*find_n_smallest*/
 int			*find_n_smallest(t_list *sta, int n);
 int			is_in_smallest(int value, int *smallest, int n);
+
+/*find_n_biggest*/
+int			*find_n_biggest(t_list *sta, int n);
+int			is_in_biggest(int value, int *biggest, int n);
+
+/*push_ops*/
+int			find_in_pos(t_list	*sta, int target);
+void		push_ops(t_list **sta, t_list **stb);
+void		push_into_pos(t_list **sta, int pos);
 
 /*push*/
 void		ptoa(t_list **sta, t_list **stb);
