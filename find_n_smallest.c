@@ -6,7 +6,7 @@
 /*   By: ekosnick <ekosnick@student.42.f>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 12:33:11 by ekosnick          #+#    #+#             */
-/*   Updated: 2025/01/13 14:29:34 by ekosnick         ###   ########.fr       */
+/*   Updated: 2025/01/14 12:31:34 by ekosnick         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,14 +59,14 @@ int	*find_n_smallest(t_list *sta, int n)
 		sm_array(smallest, n, val);
 		sta = sta->nt;
 	}
-	int i = 0;
-	ft_printf("Smallest: ");
-	while (i < n)
-	{
-		ft_printf("%d ", smallest[i]);
-		i++;
-	}
-	ft_printf("\n");
+	// int i = 0;
+	// ft_printf("Smallest: ");
+	// while (i < n)
+	// {
+	// 	ft_printf("%d ", smallest[i]);
+	// 	i++;
+	// }
+	// ft_printf("\n");
 	return (smallest);
 }
 

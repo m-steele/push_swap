@@ -6,7 +6,7 @@
 /*   By: ekosnick <ekosnick@student.42.f>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 13:50:33 by ekosnick          #+#    #+#             */
-/*   Updated: 2025/01/13 13:17:34 by ekosnick         ###   ########.fr       */
+/*   Updated: 2025/01/14 13:59:47 by ekosnick         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 /*push_swap*/
 // char		**freeme(char **nums, int index);
 int			sorted(t_list *sta);
+int			inverted(t_list *st);
 int			process_beans(char ***nums, char **beans, char *delim);
 void		print_stack(t_list *sta);
 
@@ -57,6 +58,7 @@ int			is_in_biggest(int value, int *biggest, int n);
 int			find_in_pos(t_list	*sta, int target);
 void		push_ops(t_list **sta, t_list **stb);
 void		push_into_pos(t_list **sta, int pos);
+int			mk_chunk(int size);
 
 /*push*/
 void		ptoa(t_list **sta, t_list **stb);

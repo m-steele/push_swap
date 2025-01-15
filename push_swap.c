@@ -6,7 +6,7 @@
 /*   By: ekosnick <ekosnick@student.42.f>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 10:51:11 by peatjohnsto       #+#    #+#             */
-/*   Updated: 2025/01/13 13:15:48 by ekosnick         ###   ########.fr       */
+/*   Updated: 2025/01/14 13:59:10 by ekosnick         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,20 @@ int sorted(t_list *sta)
 		if (ft_atoi(sta->ct) > ft_atoi(sta->nt->ct))
 			return (0);
 		sta = sta->nt;
+	}
+	return (1);
+}
+
+// THis will check if the stack is sorted invertedly
+int inverted(t_list *st)
+{
+	if (!st || !st->nt)
+		return (1);
+	while (st && st->nt)
+	{
+		if (ft_atoi(st->ct) > ft_atoi(st->nt->ct))
+			return (0);
+		st = st->nt;
 	}
 	return (1);
 }
@@ -154,8 +168,8 @@ int	main(int subitizer, char **beans)
 		if (!sorted(sta))
 			start_sort(&sta); /*THIS IS WHERE THE REAL FUN WILL BE*/
 			
-		ft_printf("STA after START_SORT:\n");
-		print_stack(sta);/*************************** */
+		// ft_printf("STA after START_SORT:\n");
+		// print_stack(sta);/*************************** */
 		
 		ft_lstclear(&sta, free);
 		free(nums);	/*we need to keep this*/

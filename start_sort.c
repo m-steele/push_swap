@@ -24,6 +24,7 @@ int	all_smalls_ptob(t_list *sta, int *smallest, int n)
 }
 
 // sort() will push 50% of lowest values from A to B, iteratively the next 50% lowest
+// now going to a mk_chunck function to help manage the differnt sizes
 // unitil sta reaches lstsize = 4 or maybe 8. Then will use push_ops() to ptoa() in 
 // the correct sequence
 void	sort(t_list **sta)
@@ -34,40 +35,43 @@ void	sort(t_list **sta)
 
 	while (ft_lstsize(*sta) > 4)	/*((ft_lstsize(*sta)) > (ft_lstsize(*sta) / 2) && ft_lstsize(*sta) >= 9)*/
 	{
-	n = (ft_lstsize(*sta) / 2);
+	// n = (ft_lstsize(*sta) / 2);
+	n = mk_chunk(ft_lstsize(*sta));
 	sm_as = find_n_smallest(*sta, n);
 	// ft_printf("sm_as --> (lstsize/2): %d\n", n);
 	// ft_printf("sm_as: %d, %d, %d, %d\n", sm_as[0], sm_as[1], sm_as[2], sm_as[3]);
 		if (!sm_as)
 			return;
-// WHY ARE WE NOT GETTING THE LAST SMALLEST IN THE LINKED LIST? AND IF WE ADD ONE IT IS AN INFINITE LOOP
-// USE A CONDITIONAL TO SET THE THE LOOP
-		// while (ft_lstsize(*sta) > n + 1)
-		while (!all_smalls_ptob(*sta, sm_as, n))
+// The helper function ensure all smallest are pushed
+		while (!all_smalls_ptob(*sta, sm_as, n)) 	/*while (ft_lstsize(*sta) > n + 1)*/
 		{
-			ft_printf("sm_as or n --> (lstsize/2): %d\n", n);
-			ft_printf("TOP of sta: %s\n", (*sta)->ct);
+			// ft_printf("sm_as or n --> (lstsize/2): %d\n", n);
+			// ft_printf("TOP of sta: %s\n", (*sta)->ct);
 			if (is_in_smallest(ft_atoi((*sta)->ct), sm_as, n)) /*Just changed this from !is_in... to is_in...*/
 				ptob(sta, &stb);
 			else
 				ra(sta);
 			// ft_printf("SIZE of sta: %d\n", ft_lstsize(*sta));
 		}
-		ft_printf("STA and STB after PtoB() Loop:\n");
-		print_stack(*sta);/*************************** */
-		ft_printf("\n");
-		print_stack(stb);/*************************** */
-		ft_printf("\n");
+		// ft_printf("STA and STB after PtoB() Loop:\n");
+		// print_stack(*sta);/*************************** */
+		// ft_printf("\n");
+		// print_stack(stb);/*************************** */
+		// ft_printf("\n");
 		free(sm_as);
 	}
 	sort4(sta);
-	ft_printf("STA after SORT_4():\n");
-	print_stack(*sta);/*************************** */
-	ft_printf("\n");
+	// ft_printf("STA after SORT_4():\n");
+	// print_stack(*sta);/*************************** */
+	// ft_printf("\n");
 	while (stb)
 	{
+/********************************************** */
+/*It appears that the logic behind push_ops is not great*/
 		// ft_printf("start push_ops()\n");
 		push_ops(sta, &stb);
+		// ft_printf("STA after push_ops():\n");
+		// print_stack(*sta);/*************************** */
 	}
 }
 
