@@ -6,7 +6,7 @@
 /*   By: ekosnick <ekosnick@student.42.f>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 13:50:33 by ekosnick          #+#    #+#             */
-/*   Updated: 2025/01/15 15:23:50 by ekosnick         ###   ########.fr       */
+/*   Updated: 2025/01/16 11:58:55 by ekosnick         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void		print_stack(t_list *sta);
 
 /*small_sorts*/
 void		sort3(t_list **sta);
+void		sort3inb(t_list **st);
 void		sort4(t_list **sta);
 void		sort4ord(t_list **sta, t_list **stb);
 int			min_sta(t_list *sta);
@@ -46,6 +47,7 @@ int			min_sta(t_list *sta);
 void		start_sort(t_list **sta);
 int			not_valid(char **nums);
 int			all_smalls_ptob(t_list *sta, int *smallest, int n);
+int			all_bigs_ptoa(t_list *st, int *biggest, int n);
 
 /*find_n_smallest*/
 int			*find_n_smallest(t_list *sta, int n);

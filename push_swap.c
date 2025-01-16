@@ -6,7 +6,7 @@
 /*   By: ekosnick <ekosnick@student.42.f>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 10:51:11 by peatjohnsto       #+#    #+#             */
-/*   Updated: 2025/01/15 16:07:56 by ekosnick         ###   ########.fr       */
+/*   Updated: 2025/01/16 10:35:03 by ekosnick         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 // 5 24 421 9 78 1 549 -41 54 101 38 389 -12 -1 87 999 15882 4 74 45 20 3 14
 // 5 2 4 9 22 54 41 8 1 89 11 87 21 23 25 46 123 321 5412 84 151 -5 -1 -8
 
+// https://github.com/o-reo/push_swap_visualizer
 // Visualizer: ./bin/visualizer
 
 void	print_stack(t_list *sta)

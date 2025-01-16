@@ -6,7 +6,7 @@
 /*   By: ekosnick <ekosnick@student.42.f>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 12:20:04 by ekosnick          #+#    #+#             */
-/*   Updated: 2025/01/15 18:12:40 by ekosnick         ###   ########.fr       */
+/*   Updated: 2025/01/16 11:58:29 by ekosnick         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,17 @@ int	all_smalls_ptob(t_list *sta, int *smallest, int n)
 	return (1);
 }
 
+int	all_bigs_ptoa(t_list *st, int *biggest, int n)
+{
+	while (st)
+	{
+		if (is_in_biggest(ft_atoi(st->ct), biggest, n))
+			return (0);
+		st = st->nt;
+	}
+	return (1);
+}
+
 /*TEN	TEN	TEN	TEN		TEN	TEN*/
 
 void	sort(t_list **sta)
@@ -34,14 +45,29 @@ void	sort(t_list **sta)
 	t_list	*stb = NULL;
 
 	sm_as = find_n_smallest(*sta, ft_lstsize(*sta));
-	int n = ft_lstsize(*sta);
-	ft_printf("sm_as --> (lstsize): %d\n", n);
-	ft_printf("sm_as: %d, %d, %d, %d, %d\n", sm_as[0], sm_as[1], sm_as[2], sm_as[3], sm_as[4]);
+	int n = ft_lstsize(*sta); /*MAY NEED some if/than statement if ft_lstsize(*sta) > certain number, than 'n' = 10 else...*/
+	// ft_printf("sm_as --> (lstsize): %d\n", n);
+	// ft_printf("sm_as: %d, %d, %d, %d, %d\n", sm_as[0], sm_as[1], sm_as[2], sm_as[3], sm_as[4]);
+	while (ft_lstsize(*sta) > 10)	/*((ft_lstsize(*sta)) > (ft_lstsize(*sta) / 2) && ft_lstsize(*sta) >= 9)*/
+	{
+	sm_as = find_n_smallest(*sta, n);
+		if (!sm_as)
+			return;
+		while (!all_smalls_ptob(*sta, sm_as, n)) 	/*while (ft_lstsize(*sta) > n + 1)*/
+		{
+			if (is_in_smallest(ft_atoi((*sta)->ct), sm_as, n)) /*Just changed this from !is_in... to is_in...*/
+				ptob(sta, &stb);
+			else
+				ra(sta);
+		}
+		free(sm_as);
+	}
 	sort_10_ina(sta, stb);
 			free(sm_as);
 	while (stb)
 		ptoa(sta, &stb);
 }
+
 /*TEN	TEN	TEN	TEN		TEN	TEN*/
 /*TEN	TEN	TEN	TEN		TEN	TEN*/
 
