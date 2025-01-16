@@ -6,7 +6,7 @@
 /*   By: ekosnick <ekosnick@student.42.f>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 12:33:11 by ekosnick          #+#    #+#             */
-/*   Updated: 2025/01/14 12:31:34 by ekosnick         ###   ########.fr       */
+/*   Updated: 2025/01/15 14:02:00 by ekosnick         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void	sm_array(int *arr, int n, int val)
 	}
 }
 
+// returns an 'n' number of the lowest ints in an array 
 int	*find_n_smallest(t_list *sta, int n)
 {
 	int	*smallest;

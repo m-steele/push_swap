@@ -6,7 +6,7 @@
 /*   By: ekosnick <ekosnick@student.42.f>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 10:51:11 by peatjohnsto       #+#    #+#             */
-/*   Updated: 2025/01/14 13:59:10 by ekosnick         ###   ########.fr       */
+/*   Updated: 2025/01/15 16:07:56 by ekosnick         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 // 16 5 10 8 12 1 11 6 19 4 15 9 14 7 13 2 18 3 20 17
 // 5 24 421 9 78 1 549 -41 54 101 38 389 -12 -1 87 999 15882 4 74 45 20 3 14
 // 5 2 4 9 22 54 41 8 1 89 11 87 21 23 25 46 123 321 5412 84 151 -5 -1 -8
+
+// Visualizer: ./bin/visualizer
 
 void	print_stack(t_list *sta)
 {
@@ -155,7 +157,7 @@ int	main(int subitizer, char **beans)
 			ft_printf("Error\n");
 			clean_and_exit(nums, len, NULL, 1);
 		}
-		// ft_printf("Number of Items: %d\n", len); /*This is my counter remove for final*/
+		ft_printf("Number of Items: %d\n", len); /*This is my counter remove for final*/
 		sta = NULL;
 		while (len--)
 		{
@@ -167,10 +169,10 @@ int	main(int subitizer, char **beans)
 		// ft_printf("A: %s %s %s %s %s %s %s %s\n", (sta)->ct, (sta)->nt->ct, (sta)->nt->nt->ct, (sta)->nt->nt->nt->ct, (sta)->nt->nt->nt->nt->ct, (sta)->nt->nt->nt->nt->nt->ct, (sta)->nt->nt->nt->nt->nt->nt->ct, (sta)->nt->nt->nt->nt->nt->nt->nt->ct);
 		if (!sorted(sta))
 			start_sort(&sta); /*THIS IS WHERE THE REAL FUN WILL BE*/
-			
+
 		// ft_printf("STA after START_SORT:\n");
 		// print_stack(sta);/*************************** */
-		
+
 		ft_lstclear(&sta, free);
 		free(nums);	/*we need to keep this*/
 		// sta = NULL; /*not sure that we really need this...*/

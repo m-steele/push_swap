@@ -6,7 +6,7 @@
 /*   By: ekosnick <ekosnick@student.42.f>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 15:33:56 by ekosnick          #+#    #+#             */
-/*   Updated: 2025/01/11 09:47:10 by ekosnick         ###   ########.fr       */
+/*   Updated: 2025/01/15 15:09:30 by ekosnick         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void sort3(t_list **sta)
 	int	sec;
 	int	thr;
 
-	if (!sta || !*sta || !(*sta)->nt || !(*sta)->nt->nt)
-		return ;
+	// if (!sta || !*sta || !(*sta)->nt || !(*sta)->nt->nt)
+	// 	return ;
 	fst = ft_atoi((*sta)->ct);
 	sec = ft_atoi((*sta)->nt->ct);
 	thr = ft_atoi((*sta)->nt->nt->ct);
@@ -101,6 +101,8 @@ void sort4ord(t_list **sta, t_list **stb)
 				ptob(sta, stb);
 		}
 	}
+	/****************************** */
+	// Use this part here to nt->nt->ct for top three of stb, sort3(stb), then ptoa.
 	if (ft_lstsize(*sta) == 3)
 		sort3(sta);
 	if (stb)
@@ -122,3 +124,30 @@ int	min_sta(t_list *sta)
 	}
 	return(min);
 }
+
+
+// 	if (!sta || !*sta || !(*sta)->nt)
+// 		return ;
+// 	min = min_sta(*sta);
+// 	if (ft_atoi((*sta)->ct) == min)  /*&& !sorted(*sta)*/
+// 		ptob(sta, stb);
+// 	else if (ft_atoi(ft_lstlast(*sta)->ct) == min)
+// 	{
+// 		rra(sta);
+// 		if (!sorted(*sta))
+// 			ptob(sta, stb);
+// 	}
+// 	else
+// 	{
+// 		while ((ft_lstsize(*sta) > 3) && ft_atoi((*sta)->ct) != min)
+// 		{
+// 			ra(sta);
+// 			if (ft_atoi((*sta)->ct) == min && !sorted(*sta))
+// 				ptob(sta, stb);
+// 		}
+// 	}
+// 	if (ft_lstsize(*sta) == 3)
+// 		sort3(sta);
+// 	if (stb)
+// 		ptoa(sta, stb);
+// }

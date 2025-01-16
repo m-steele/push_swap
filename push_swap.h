@@ -6,7 +6,7 @@
 /*   By: ekosnick <ekosnick@student.42.f>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 13:50:33 by ekosnick          #+#    #+#             */
-/*   Updated: 2025/01/14 13:59:47 by ekosnick         ###   ########.fr       */
+/*   Updated: 2025/01/15 15:23:50 by ekosnick         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ int			min_sta(t_list *sta);
 /*start_sort*/
 void		start_sort(t_list **sta);
 int			not_valid(char **nums);
+int			all_smalls_ptob(t_list *sta, int *smallest, int n);
 
 /*find_n_smallest*/
 int			*find_n_smallest(t_list *sta, int n);
@@ -55,10 +56,12 @@ int			*find_n_biggest(t_list *sta, int n);
 int			is_in_biggest(int value, int *biggest, int n);
 
 /*push_ops*/
-int			find_in_pos(t_list	*sta, int target);
-void		push_ops(t_list **sta, t_list **stb);
-void		push_into_pos(t_list **sta, int pos);
-int			mk_chunk(int size);
+// int			find_in_pos(t_list	*sta, int target);
+// void		push_ops(t_list **sta, t_list **stb);
+// void		push_into_pos(t_list **sta, int pos);
+// int			mk_chunk(int size);
+void		sort_5_ina(t_list **sta, t_list *stb);
+void sort_10_ina(t_list **sta, t_list *stb);
 
 /*push*/
 void		ptoa(t_list **sta, t_list **stb);
