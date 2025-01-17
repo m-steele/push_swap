@@ -6,22 +6,22 @@
 /*   By: ekosnick <ekosnick@student.42.f>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 12:33:11 by ekosnick          #+#    #+#             */
-/*   Updated: 2025/01/15 14:02:00 by ekosnick         ###   ########.fr       */
+/*   Updated: 2025/01/17 10:14:51 by ekosnick         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	init_sm_array(int *arr, int n)
+void	init_sm_array(int *smallest, int n)
 {
 	int	i;
 
 	i = 0;
 	while (i < n)
-		arr[i++] = INT_MAX;
+		smallest[i++] = INT_MAX;
 }
 
-void	sm_array(int *arr, int n, int val)
+void	sm_array(int *smallest, int n, int val)
 {
 	int	i;
 	int	j;
@@ -29,15 +29,15 @@ void	sm_array(int *arr, int n, int val)
 	i = 0;
 	while (i < n)
 	{
-		if (val < arr[i])
+		if (val < smallest[i])
 		{
 			j = n - 1;
 			while (j > i)
 			{
-				arr[j] = arr[j - 1];
+				smallest[j] = smallest[j - 1];
 				j--;
 			}
-			arr[i] = val;
+			smallest[i] = val;
 			break;
 		}
 		i++;

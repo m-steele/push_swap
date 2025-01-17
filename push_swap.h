@@ -6,7 +6,7 @@
 /*   By: ekosnick <ekosnick@student.42.f>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 13:50:33 by ekosnick          #+#    #+#             */
-/*   Updated: 2025/01/16 11:58:55 by ekosnick         ###   ########.fr       */
+/*   Updated: 2025/01/17 17:36:42 by ekosnick         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,15 @@ void		print_stack(t_list *sta);
 
 /*small_sorts*/
 void		sort3(t_list **sta);
-void		sort3inb(t_list **st);
 void		sort4(t_list **sta);
-void		sort4ord(t_list **sta, t_list **stb);
+// void		sort4ord(t_list **sta, t_list **stb);
 int			min_sta(t_list *sta);
+
+void		sort3inb(t_list **sta, t_list **stb);
+void		sort3ina(t_list **sta, t_list **stb);
+void		sa_fst_sec_hi(t_list **sta, t_list **stb);
+void		sa_fst_lo(int fst,int sec,int thr, t_list **sta, t_list **stb);
+void		sa_fst_hi(int fst,int sec,int thr, t_list **sta, t_list **stb);
 
 /*start_sort*/
 void		start_sort(t_list **sta);
@@ -62,8 +67,10 @@ int			is_in_biggest(int value, int *biggest, int n);
 // void		push_ops(t_list **sta, t_list **stb);
 // void		push_into_pos(t_list **sta, int pos);
 // int			mk_chunk(int size);
+void		sort_10_ina(t_list **sta, t_list *stb);
+void		sort_10_inb(t_list **sta, t_list *stb);
 void		sort_5_ina(t_list **sta, t_list *stb);
-void sort_10_ina(t_list **sta, t_list *stb);
+void		sort_5_inb(t_list **sta, t_list *stb);
 
 /*push*/
 void		ptoa(t_list **sta, t_list **stb);

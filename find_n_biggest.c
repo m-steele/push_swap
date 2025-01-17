@@ -6,7 +6,7 @@
 /*   By: ekosnick <ekosnick@student.42.f>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 12:33:11 by ekosnick          #+#    #+#             */
-/*   Updated: 2025/01/12 10:04:26 by ekosnick         ###   ########.fr       */
+/*   Updated: 2025/01/17 13:16:19 by ekosnick         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,14 +62,14 @@ int	*find_n_biggest(t_list *sta, int n)
 		bg_array(biggest, n, val);/* Insert the value if it is among the n biggest */
 		sta = sta->nt;
 	}
-	int i = 0;
-	ft_printf("Biggest: ");
-	while (i < n)
-	{
-		ft_printf("%d ", biggest[i]);
-		i++;
-	}
-	ft_printf("\n");
+	// int i = 0;
+	// ft_printf("Biggest: ");
+	// while (i < n)
+	// {
+	// 	ft_printf("%d ", biggest[i]);
+	// 	i++;
+	// }
+	// ft_printf("\n");
 	return (biggest);
 }
 

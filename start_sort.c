@@ -6,7 +6,7 @@
 /*   By: ekosnick <ekosnick@student.42.f>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 12:20:04 by ekosnick          #+#    #+#             */
-/*   Updated: 2025/01/16 11:58:29 by ekosnick         ###   ########.fr       */
+/*   Updated: 2025/01/17 16:48:04 by ekosnick         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,11 @@ void	sort(t_list **sta)
 {
 	int		*sm_as; /*the n smallest values in stack A*/
 	t_list	*stb = NULL;
+	
+	int n = 10; /*this is in place to chunking 50% or some other ratio*/
 
-	sm_as = find_n_smallest(*sta, ft_lstsize(*sta));
-	int n = ft_lstsize(*sta); /*MAY NEED some if/than statement if ft_lstsize(*sta) > certain number, than 'n' = 10 else...*/
-	// ft_printf("sm_as --> (lstsize): %d\n", n);
-	// ft_printf("sm_as: %d, %d, %d, %d, %d\n", sm_as[0], sm_as[1], sm_as[2], sm_as[3], sm_as[4]);
-	while (ft_lstsize(*sta) > 10)	/*((ft_lstsize(*sta)) > (ft_lstsize(*sta) / 2) && ft_lstsize(*sta) >= 9)*/
+/*NOTE WE ARE JUST GOING TO SKIP OVER THIS WHILE LOOP IF IT IS LESS THAN 10*/
+	while (ft_lstsize(*sta) > n)	/*((ft_lstsize(*sta)) > (ft_lstsize(*sta) / 2) && ft_lstsize(*sta) >= 9)*/
 	{
 	sm_as = find_n_smallest(*sta, n);
 		if (!sm_as)
@@ -62,10 +61,22 @@ void	sort(t_list **sta)
 		}
 		free(sm_as);
 	}
+	ft_printf("Start SORT_10 STA():\n");
 	sort_10_ina(sta, stb);
-			free(sm_as);
+	ft_printf("END SORT_10 STA():\n");
+	ft_printf("Size of stb: %d\n", ft_lstsize(stb));	
+	while (ft_lstsize(stb) >= 10)
+	{
+		ft_printf("Start SORT_10 STB():\n");
+		sort_10_inb(sta, stb);
+	}
+ft_printf("END SORT_10 STB():\n");
 	while (stb)
+	{
+		if (ft_atoi((*sta)->ct) > ft_atoi((*sta)->nt->ct))
+			sa(sta);
 		ptoa(sta, &stb);
+	}
 }
 
 /*TEN	TEN	TEN	TEN		TEN	TEN*/
@@ -84,6 +95,7 @@ void start_sort(t_list **sta)
 		sort3(sta);
 	else if (lstsize == 4)
 		sort4(sta);
+	// else if (lstsize > 4 && lstsize < 10) we will have to address this if this scheme works...
 	else if (lstsize > 4)
 		sort(sta);
 }
