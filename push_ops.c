@@ -6,7 +6,7 @@
 /*   By: ekosnick <ekosnick@student.42.f>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 09:19:14 by ekosnick          #+#    #+#             */
-/*   Updated: 2025/01/17 17:38:12 by ekosnick         ###   ########.fr       */
+/*   Updated: 2025/01/19 11:14:10 by ekosnick         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void sort_5_ina(t_list **sta, t_list *stb)
 	sm_as = find_n_smallest(*sta, 2);
 	if (!sm_as)
 		return;
-	while (!all_smalls_ptob(*sta, sm_as, 2) && (ft_lstsize(*sta) > 3)) 	/*while (ft_lstsize(*sta) > n + 1)*/
+	while (!all_smalls_ptob(*sta, sm_as, 2) && (ft_lstsize(*sta) > 3))
 	{
 		current_value = ft_atoi((*sta)->ct);
 		if (is_in_smallest(current_value, sm_as, 2))
@@ -97,19 +97,19 @@ void sort_5_ina(t_list **sta, t_list *stb)
 			ra(sta);
 	}
 	free(sm_as);
-	ft_printf("Start SORT_3 IN STA():\n");
-	ft_printf("STA:\n");
-	print_stack(*sta);
-	ft_printf("STB:\n");
-	print_stack(stb);
+	ft_printf("Start SORT_3 IN STA(): from sort_5_ina\n");
+	// ft_printf("STA:\n");
+	// print_stack(*sta);
+	// ft_printf("STB:\n");
+	// print_stack(stb);
 /*******May need to handle the case if there are <=3 elements
  if (st_lstsize(*st) <= 3) */
 	sort3ina(sta, &stb);
-	ft_printf("END SORT_3 IN STA():\n");
+	ft_printf("END SORT_3 IN STA(): from sort_5_ina\n");
 	ptoa(sta, &stb);
 	ptoa(sta, &stb);
-	// if (ft_atoi((*sta)->ct) > ft_atoi((*sta)->nt->ct))  /*This should be taken care of in sort3ina()*/
-	// 	sa(sta);
+	if (ft_atoi((*sta)->ct) > ft_atoi((*sta)->nt->ct))/*This is a potential place to combine operations*/
+		sa(sta);
 }
 
 void sort_5_inb(t_list **sta, t_list *stb)
@@ -141,7 +141,7 @@ back to the top so that you can those specific sort3inb()*/
 		rrb(&stb);
 		i_rotatinons--;
 	}
-	ft_printf("Start SORT_3 IN STB():\n");
+	ft_printf("BEFORE SORT_3 IN STB() from sort_5_inb:\n");
 	sort3inb(sta, &stb); /*-> needs to be in inverse sort to put highest on top*/
 	// if (ft_atoi((*sta)->ct) > ft_atoi((*sta)->nt->ct)) /*since you have alrady pushed the two highest to A*/
 	// 	sa(sta);			/*The new sort3inb() takes care of the sa() with ss()*/
@@ -152,8 +152,11 @@ back to the top so that you can those specific sort3inb()*/
 	// ptoa(sta, &stb);
 	// if (ft_atoi((*sta)->ct) > ft_atoi((*sta)->nt->ct))
 	// 	sa(sta);
+	ft_printf("STACK A\n");
+	// print_stack(*sta);  /*WHY DOES THIS CREATE AN INFINATE LOOP?*/
+	ft_printf("STACK B\n");
+	print_stack(stb);
 }
-
 
 /*NOTE THAT THE LOGIC IS THAT CHUNKS OF THE LOWEST to highest 10 ARE ALREADY 
 PUSHED INTO STB; THEREFORE THE WHILE LOOPS ARE ONLY INTERESTED IN THE x NUMBER (5 OR 3) OF 
@@ -162,22 +165,27 @@ void sort_10_ina(t_list **sta, t_list *stb)
 {
 	int		*sm_as; /*the n smallest values in stack A*/
 
-	sm_as = find_n_smallest(*sta, 5); /******OUR PROBLEM IS WITH THIS HERE ************/
+	sm_as = find_n_smallest(*sta, 5);
 	if (!sm_as)
 		return ;
-	while (!all_smalls_ptob(*sta, sm_as, 5) && (ft_lstsize(*sta) > 5)) 	/*MAY NOT NEED THE AND CONDITION*/
+
+/******************************************************************************** */
+/*START HERE WITH FIXING THE LOGIC - HAVE TO THINK ABOUT WHAT TO DO IF IT IS LESS
+THAN 5 SINCE IT WILL PUSH WHAT IS IN THE LOWEST FIVE, BUT THESE COULD BE HIGHER THAN
+THE LOWEST AND THEN IT MOVES ON TO SORT5 FROM THERE*/
+	while (!all_smalls_ptob(*sta, sm_as, 5) && (ft_lstsize(*sta) > 5))
 	{
 		if (is_in_smallest(ft_atoi((*sta)->ct), sm_as, 5))
 			ptob(sta, &stb);
 		else
 			ra(sta);
 	}
-	free(sm_as);	/*TRYING TO FREE THIS EARLIER RATHER THAN AT THE END OF THE FUNCTION*/
-	ft_printf("Start SORT_5() STA:\n");
+	free(sm_as);
+	ft_printf("Start SORT_5() STA from sort_10_ina():\n");
 	sort_5_ina(sta, stb);
 // I BELEIVE THE SORT 5 IN A IS WORKING FINE
 // WE JUST HAVE TO IMPLEMENT THE SAME LOGIC GETTING NUMBERS FROM STACK B TO A
-	ft_printf("Start SORT_5() STB:\n");
+	ft_printf("Start SORT_5() STB from sort_10_ina():\n");
 	sort_5_inb(sta, stb); /*instead of the basic pushing implemented below, we will sort_5_inb()*/	
 	// while (n > 0)
 	// {
@@ -189,6 +197,7 @@ void sort_10_ina(t_list **sta, t_list *stb)
 	// }
 	// if (ft_atoi((*sta)->ct) > ft_atoi((*sta)->nt->ct))/*line probably not needed but keep here for now*/
 }
+
 
 // THEN WE NEED TO WRITE THE sort_10_inb() function.
 void sort_10_inb(t_list **sta, t_list *stb)
@@ -218,7 +227,8 @@ void sort_10_inb(t_list **sta, t_list *stb)
 		i_rotatinons--;
 	}
 	free(bg_bs); /*THIS WAS PLACED AT THE END OF THE FUNCTI*/
+	ft_printf("Start SORT_5 IN STA() from sort_10_inb:\n");
 	sort_5_ina(sta, stb);
-	ft_printf("Start SORT_5 IN STB():\n");
+	ft_printf("Start SORT_5 IN STB() from sort_10_inb:\n");
 	sort_5_inb(sta, stb); /*-> needs to be in inverse sort to put highest on top*/
 }

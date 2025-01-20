@@ -6,7 +6,7 @@
 /*   By: ekosnick <ekosnick@student.42.f>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 15:33:56 by ekosnick          #+#    #+#             */
-/*   Updated: 2025/01/17 17:43:29 by ekosnick         ###   ########.fr       */
+/*   Updated: 2025/01/19 10:51:16 by ekosnick         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	sort3(t_list **sta)
 
 void	sa_fst_sec_hi(t_list **sta, t_list **stb)
 {
-		if ((*stb)->ct < (*stb)->nt->ct)
+		if (ft_atoi((*stb)->ct) < ft_atoi((*stb)->nt->ct))
 			ss(sta, stb);
 	else
 		sa(sta);
@@ -60,7 +60,7 @@ void	sa_fst_lo(int fst,int sec,int thr, t_list **sta, t_list **stb)
 	if (fst < sec && fst < thr)
 	{
 		ra(sta);
-		if ((*stb)->ct < (*stb)->nt->ct)
+		if (ft_atoi((*stb)->ct) < ft_atoi((*stb)->nt->ct))
 			ss(sta, stb);
 		else
 			sa(sta);
@@ -69,7 +69,7 @@ void	sa_fst_lo(int fst,int sec,int thr, t_list **sta, t_list **stb)
 	else if (fst < sec && fst > thr)
 	{
 		ra(sta);
-		if ((*stb)->ct < (*stb)->nt->ct)
+		if (ft_atoi((*stb)->ct) < ft_atoi((*stb)->nt->ct))
 			ss(sta, stb);
 		else
 			sa(sta);
@@ -82,14 +82,14 @@ void	sa_fst_hi(int fst,int sec,int thr, t_list **sta, t_list **stb)
 {
 	if (fst > sec && fst < thr)
 	{
-		if ((*stb)->ct < (*stb)->nt->ct)
+		if (ft_atoi((*stb)->ct) < ft_atoi((*stb)->nt->ct))
 			ss(sta, stb);
 		else
 			sa(sta);
 	}
 	else
 	{
-		if ((*stb)->ct < (*stb)->nt->ct)
+		if (ft_atoi((*stb)->ct) < ft_atoi((*stb)->nt->ct))
 			ss(sta, stb);
 		else
 			sa(sta);
@@ -110,12 +110,6 @@ void	sort3ina(t_list **sta, t_list **stb)
 	fst = ft_atoi((*sta)->ct);
 	sec = ft_atoi((*sta)->nt->ct);
 	thr = ft_atoi((*sta)->nt->nt->ct);
-
-
-// Something is very wrong with the pointers and with regard to stb.... need to figure this
-// out before we can proceed
-	
-	ft_printf("(stb)->ct: %d\n(stb)->nt->ct: %d\n", (*stb)->ct, (*stb)->nt->ct);
 	if (fst < sec && sec < thr)
 		return ;
 	if (fst > sec && sec > thr)
@@ -142,7 +136,9 @@ void sort3inb(t_list **sta, t_list **stb)
 	fst = ft_atoi((*stb)->ct);
 	sec = ft_atoi((*stb)->nt->ct);
 	thr = ft_atoi((*stb)->nt->nt->ct);
-	ft_printf("This is fst: %d\n        sec: %d\n        thr: %d\n", fst, sec, thr);
+	ft_printf("STACK A\n");
+	print_stack(*sta);
+	ft_printf("STACK B\n");
 	print_stack(*stb);
 	if (fst > sec && sec > thr) /*inverted condition*/
 		return ;
@@ -150,7 +146,7 @@ void sort3inb(t_list **sta, t_list **stb)
 	else if (fst < sec && sec < thr)	/*sorted condition*/
 	{
 		rb(stb);
-		if ((*sta)->ct > (*sta)->nt->ct)
+		if (ft_atoi((*sta)->ct) > ft_atoi((*sta)->nt->ct))
 			ss(sta, stb);
 		else
 			sb(stb);
@@ -161,7 +157,7 @@ void sort3inb(t_list **sta, t_list **stb)
 	}
 	else if (fst < sec && fst < thr)
 	{
-		if ((*sta)->ct > (*sta)->nt->ct)
+		if (ft_atoi((*sta)->ct) > ft_atoi((*sta)->nt->ct))
 			ss(sta, stb);
 		else
 			sb(stb);
@@ -172,7 +168,7 @@ void sort3inb(t_list **sta, t_list **stb)
 	}
 	else if (fst < sec && fst > thr)
 	{
-		if ((*sta)->ct > (*sta)->nt->ct)
+		if (ft_atoi((*sta)->ct) > ft_atoi((*sta)->nt->ct))
 			ss(sta, stb);
 		else
 			sb(stb);
@@ -183,7 +179,7 @@ void sort3inb(t_list **sta, t_list **stb)
 	else if (fst > sec && fst < thr)
 	{
 		rb(stb);
-		if ((*sta)->ct > (*sta)->nt->ct)
+		if (ft_atoi((*sta)->ct) > ft_atoi((*sta)->nt->ct))
 			ss(sta, stb);
 		else
 			sb(stb);
@@ -193,7 +189,7 @@ void sort3inb(t_list **sta, t_list **stb)
 	}
 	else if (fst > sec && fst > thr)
 	{
-		if ((*sta)->ct > (*sta)->nt->ct)
+		if (ft_atoi((*sta)->ct) > ft_atoi((*sta)->nt->ct))
 			ss(sta, stb);
 		ptoa(sta, stb);
 		sb(stb);
@@ -267,6 +263,23 @@ void sort4ord(t_list **sta, t_list **stb)
 	if (stb)
 		ptoa(sta, stb);
 }
+
+// void	four_nine(t_list **sta, t_list *stb)
+// {
+// 	int	*sm_as;
+	
+// 	sm_as = find_n_smallest(*sta, 4);
+// 		if (!sm_as)
+// 			return;
+// 		while (!all_smalls_ptob(*sta, sm_as, n))
+// 		{
+// 			if (is_in_smallest(ft_atoi((*sta)->ct), sm_as, n)) /*Just changed this from !is_in... to is_in...*/
+// 				ptob(sta, &stb);
+// 			else
+// 				ra(sta);
+// 		}
+// 		free(sm_as);
+// }		
 
 int	min_sta(t_list *sta)
 {
