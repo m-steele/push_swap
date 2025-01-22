@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   small_sorts.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekosnick <ekosnick@student.42.f>           +#+  +:+       +#+        */
+/*   By: ekosnick <ekosnick@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 15:33:56 by ekosnick          #+#    #+#             */
-/*   Updated: 2025/01/19 10:51:16 by ekosnick         ###   ########.fr       */
+/*   Updated: 2025/01/22 16:06:43 by ekosnick         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,9 +136,9 @@ void sort3inb(t_list **sta, t_list **stb)
 	fst = ft_atoi((*stb)->ct);
 	sec = ft_atoi((*stb)->nt->ct);
 	thr = ft_atoi((*stb)->nt->nt->ct);
-	ft_printf("STACK A\n");
+	ft_printf("STACK A from sort3inb\n");
 	print_stack(*sta);
-	ft_printf("STACK B\n");
+	ft_printf("STACK B from sort3inb\n");
 	print_stack(*stb);
 	if (fst > sec && sec > thr) /*inverted condition*/
 		return ;
@@ -196,6 +196,10 @@ void sort3inb(t_list **sta, t_list **stb)
 		ptoa(sta, stb);
 		ptoa(sta, stb);
 	}
+	ft_printf("STACK A from END of sort3inb\n");
+	print_stack(*sta);
+	ft_printf("STACK B from END of sort3inb\n");
+	print_stack(*stb);
 }
 
 // this works!!!!!!!!!
