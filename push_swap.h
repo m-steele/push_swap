@@ -6,7 +6,7 @@
 /*   By: ekosnick <ekosnick@student.42.f>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 13:50:33 by ekosnick          #+#    #+#             */
-/*   Updated: 2025/01/18 11:30:01 by ekosnick         ###   ########.fr       */
+/*   Updated: 2025/01/20 10:32:47 by ekosnick         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,10 +63,10 @@ int			*find_n_biggest(t_list *sta, int n);
 int			is_in_biggest(int value, int *biggest, int n);
 
 /*push_ops*/
-// int			find_in_pos(t_list	*sta, int target);
-// void		push_ops(t_list **sta, t_list **stb);
-// void		push_into_pos(t_list **sta, int pos);
-// int			mk_chunk(int size);
+int			find_in_pos(t_list	*sta, int target);
+void		push_ops(t_list **sta, t_list **stb);
+void		push_into_pos(t_list **sta, int pos);
+int			mk_chunk(int size);
 void		sort_10_ina(t_list **sta, t_list *stb);
 void		sort_10_inb(t_list **sta, t_list *stb);
 void		sort_5_ina(t_list **sta, t_list *stb);
