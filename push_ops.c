@@ -11,7 +11,7 @@ void sort_5_ina(t_list **sta, t_list *stb)
 	sm_as = find_n_smallest(*sta, 2);
 	if (!sm_as)
 		return;
-	while (!all_smalls_ptob(*sta, sm_as, 2) && (ft_lstsize(*sta) > 3))
+	while (!all_smalls_ptob(*sta, sm_as, 2) && (ft_lstsize(*sta) > 3)) /****Place where there may be issues with the logic */
 	{
 		current_value = ft_atoi((*sta)->ct);
 		if (is_in_smallest(current_value, sm_as, 2))
@@ -24,10 +24,10 @@ void sort_5_ina(t_list **sta, t_list *stb)
 	print_stack(*sta);
 	ft_printf("STACK B from sort_5_ina; n = %d\n", ft_lstsize(stb));
 	print_stack(stb);
-/*******May need to handle the case if there are <=3 elements
- if (st_lstsize(*st) <= 3) */
  	ft_printf("Start SORT_3 IN STA(): from sort_5_ina\n");
+
 	sort3ina(sta, &stb);
+
 	ft_printf("END SORT_3 IN STA(): from sort_5_ina followed by two ptoa and sa if necessary\n");
 	ptoa(sta, &stb);
 	ptoa(sta, &stb);
@@ -88,6 +88,11 @@ void sort_5_inb(t_list **sta, t_list *stb)
 	if (!bg_bs)
 		return;
 	i_rotatinons = 0;
+	ft_printf("before first while loop from sort_5_inb:\n");
+	ft_printf("STACK A from sort_5_inb; n = %d\n", ft_lstsize(*sta));
+	print_stack(*sta);
+	ft_printf("STACK B from sort_5_inb; n = %d\n", ft_lstsize(stb));
+	print_stack(stb);
 	while (!all_bigs_ptoa(stb, bg_bs, 2) && (ft_lstsize(stb) > 3))
 	{
 		current_value = ft_atoi((stb)->ct);
@@ -100,7 +105,7 @@ void sort_5_inb(t_list **sta, t_list *stb)
 		}
 	}
 	free(bg_bs);
-	while (i_rotatinons > 0 && !inverted(stb))
+	while (i_rotatinons > 0 && !inverted(stb))/*forseeable issues if is inverted while*/
 	{
 		rrb(&stb);
 		i_rotatinons--;
@@ -114,15 +119,7 @@ void sort_5_inb(t_list **sta, t_list *stb)
 /*NOTHING IS CHANGING WHEN the next function is called*/
 
 	sort3inb(sta, &stb); /*-> needs to be in inverse sort to put highest on top*/
-	// if (ft_atoi((*sta)->ct) > ft_atoi((*sta)->nt->ct)) /*since you have alrady pushed the two highest to A*/
-	// 	sa(sta);			/*The new sort3inb() takes care of the sa() with ss()*/
 
-// I believe sort3inb takes care of the ptoa()s so the below can be deleted
-	// ptoa(sta, &stb);
-	// ptoa(sta, &stb);
-	// ptoa(sta, &stb);
-	// if (ft_atoi((*sta)->ct) > ft_atoi((*sta)->nt->ct))
-	// 	sa(sta);
 	ft_printf("STACK A from sort_5_inb after sort3inb(); n = %d\n", ft_lstsize(*sta));
 	print_stack(*sta);  /*WHY DOES THIS CREATE AN INFINATE LOOP if 12 digits?*/
 	ft_printf("STACK B from sort_5_inb after sort3inb(); n = %d\n", ft_lstsize(stb));
@@ -156,7 +153,8 @@ void sort_10_ina(t_list **sta, t_list *stb)
 	ft_printf("STACK A; n = %d\n", ft_lstsize(*sta));
 	print_stack(*sta);
 	ft_printf("STACK B; n = %d\n", ft_lstsize(stb));
-	print_stack(stb);
+		print_stack(stb);
+
 	sort_5_ina(sta, stb);
 // I STILL BELEIVE THE SORT 5 IN A IS WORKING FINE
 	ft_printf("Start SORT_5() STB from sort_10_ina():\n");

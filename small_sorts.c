@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   small_sorts.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekosnick <ekosnick@student.42.f>           +#+  +:+       +#+        */
+/*   By: ekosnick <ekosnick@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 15:33:56 by ekosnick          #+#    #+#             */
-/*   Updated: 2025/01/24 15:10:50 by ekosnick         ###   ########.fr       */
+/*   Updated: 2025/01/24 18:18:40 by ekosnick         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,12 +137,11 @@ void sort3inb(t_list **sta, t_list **stb)
 	sec = ft_atoi((*stb)->nt->ct);
 	thr = ft_atoi((*stb)->nt->nt->ct);
 	ft_printf("STACK A from start of sort3inb(); n = %d\n", ft_lstsize(*sta));
-	print_stack(*sta);  /*WHY DOES THIS CREATE AN INFINATE LOOP if 12 digits?*/
+	print_stack(*sta);
 	ft_printf("STACK B from start of sort3inb(); n = %d\n", ft_lstsize(*stb));
 	print_stack(*stb);
 	if (fst > sec && sec > thr) /*inverted condition*/
 		return ;
-/*if this works, break out the individual functions as was the case with sort3ina()*/
 	else if (fst < sec && sec < thr)	/*sorted condition*/
 	{
 		rb(stb);

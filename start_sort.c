@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   start_sort.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekosnick <ekosnick@student.42.f>           +#+  +:+       +#+        */
+/*   By: ekosnick <ekosnick@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 12:20:04 by ekosnick          #+#    #+#             */
-/*   Updated: 2025/01/24 14:12:46 by ekosnick         ###   ########.fr       */
+/*   Updated: 2025/01/24 18:59:54 by ekosnick         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,9 @@ This is just the first check to push that amount over to b, before the big push*
 		first_ptob(sta, &stb, n);
 	}
 /*Then we will loop through and push stacks of 10*/
-	while (ft_lstsize(*sta) > 10)	/*((ft_lstsize(*sta)) > (ft_lstsize(*sta) / 2) && ft_lstsize(*sta) >= 9)*/
+/*THIS IS THE PROBLM, YOU SEE TAHT IT SHOULD BE 'IF' BECUASE WHILE
+STA > 10 WILL ALWAYS BE THE CASE*/
+	if (ft_lstsize(*sta) > 10)	/*((ft_lstsize(*sta)) > (ft_lstsize(*sta) / 2) && ft_lstsize(*sta) >= 9)*/
 	{
 		n = 10;
 		sm_as = find_n_smallest(*sta, n);
@@ -122,33 +124,30 @@ This is just the first check to push that amount over to b, before the big push*
 				ra(sta);
 		}
 		free(sm_as);
-		ft_printf("END OF THE INITIAL PUSH\n");
-		ft_printf("STACK A in sort function; n = %d\n", ft_lstsize(*sta));
-		print_stack(*sta);
-		ft_printf("STACK B in sort function; n = %d\n", ft_lstsize(stb));
-		print_stack(stb);
-	
+		
 		sort_10_ina(sta, stb); /*&stb is used if it is passed to a double pointer*/
 		
-		/*NOTE that sort_10_inb is never called and so this is a problem*/
 		ft_printf("END sort_10_ina(sta, stb);\n");
 		ft_printf("STACK A ; n = %d\n", ft_lstsize(*sta));
 		print_stack(*sta);
 		ft_printf("STACK B; n = %d\n", ft_lstsize(stb));
 		print_stack(stb);
-		/*makeshift push to a so that the process can be completed*/
-		/*SOMEHOW WE LOSE 3 VALUES BEFORE WE GET HERE, SOMEWHERE IN sort_10_ina()*/
-		while (stb)
-		{
-   			ptoa(sta, &stb);
-		    if (*sta && (*sta)->nt && ft_atoi((*sta)->ct) > ft_atoi((*sta)->nt->ct))
-		        sa(sta);
-		}
-		ft_printf("STACK A AT END OF SORT; n = %d\n", ft_lstsize(*sta));
-		print_stack(*sta);
-		ft_printf("STACK B AT END OF SORT; n = %d\n", ft_lstsize(stb));
-		print_stack(stb);
 	}
+	/*THIS SHOULD BE IT, IF WE CAN FIX THE LOGIC IN SORT_10_INB() WE SHOULD BE GOOD*/
+	if (ft_lstsize(stb) >= 10)
+		sort_10_inb(sta, stb);
+	ft_printf("STACK B AT END OF SORT; n = %d\n", ft_lstsize(stb));
+	print_stack(stb);
+	while (stb)
+	{
+   		ptoa(sta, &stb);
+		if (*sta && (*sta)->nt && ft_atoi((*sta)->ct) > ft_atoi((*sta)->nt->ct))
+			sa(sta);
+	}
+	ft_printf("STACK A AT END OF SORT; n = %d\n", ft_lstsize(*sta));
+	print_stack(*sta);
+	ft_printf("STACK B AT END OF SORT; n = %d\n", ft_lstsize(stb));
+	print_stack(stb);
 }
 
 /*TEN	TEN	TEN	TEN		TEN	TEN*/
