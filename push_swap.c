@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekosnick <ekosnick@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ekosnick <ekosnick@student.42.f>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 10:51:11 by peatjohnsto       #+#    #+#             */
-/*   Updated: 2025/01/22 15:56:11 by ekosnick         ###   ########.fr       */
+/*   Updated: 2025/01/23 16:07:25 by ekosnick         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,8 +177,8 @@ int	main(int subitizer, char **beans)
 		// print_stack(sta);/*************************** */
 
 		ft_lstclear(&sta, free);
+		sta = NULL; /*not sure that we really need this...*/
 		free(nums);	/*we need to keep this*/
-		// sta = NULL; /*not sure that we really need this...*/
 	}
 	return (0);
 }
