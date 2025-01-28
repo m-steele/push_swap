@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   small_sorts.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekosnick <ekosnick@student.42.f>           +#+  +:+       +#+        */
+/*   By: ekosnick <ekosnick@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 15:33:56 by ekosnick          #+#    #+#             */
-/*   Updated: 2025/01/28 13:44:40 by ekosnick         ###   ########.fr       */
+/*   Updated: 2025/01/28 19:42:55 by ekosnick         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -153,7 +153,8 @@ void sort3inb(t_list **sta, t_list **stb)
 			sb(stb);
 		ptoa(sta, stb);
 		ptoa(sta, stb);
-		rrb(stb);
+		if (ft_lstsize(*stb) > 1)
+			rrb(stb);
 		ptoa(sta, stb);
 	}
 	else if (fst < sec && fst < thr)
