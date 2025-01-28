@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   start_sort.c                                       :+:      :+:    :+:   */
+/*   start_sort_P.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ekosnick <ekosnick@student.42.f>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 12:20:04 by ekosnick          #+#    #+#             */
-/*   Updated: 2025/01/28 14:06:16 by ekosnick         ###   ########.fr       */
+/*   Updated: 2025/01/28 12:11:05 by ekosnick         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ int	all_bigs_ptoa(t_list *st, int *biggest, int n)
 
 /*TEN	TEN	TEN	TEN		TEN	TEN*/
 
+
 /*AT SOME POINT YOU MAY BE ABLE TO DO SOMETHING LIKE THIS ON THE FIRST_PTOB
 THE IDEA IS TO SEE IF YOU CAN USE RR OR SS WHLE SORTING THE FIRT BIT OVER TO B*/
 // if (ft_lstsize(*stb) > 1)
@@ -70,6 +71,7 @@ void	first_ptob(t_list **sta, t_list **stb, int n)
 		sm_as = find_n_smallest(*sta, n);
 		if (!sm_as)
 			return ;
+		ft_printf("Size of 'n' = %d\n", n);
  		while (!all_smalls_ptob(*sta, sm_as, n))
 		{
 			if (is_in_smallest(ft_atoi((*sta)->ct), sm_as, n)) /*Just changed this from !is_in... to is_in...*/
@@ -77,6 +79,9 @@ void	first_ptob(t_list **sta, t_list **stb, int n)
 			else
 				ra(sta);
 		}
+		ft_printf("END FIRST PUSH TO B\n");
+		ft_printf("STACK A in first_ptob() function\n");
+		print_stack(*sta);
 		free(sm_as);
 }
 
@@ -85,53 +90,68 @@ void	sort(t_list **sta)
 	int		*sm_as; /*the n smallest values in stack A*/
 	t_list	*stb = NULL;
 	int 	n; /*this is in place to chunking 50% or some other ratio*/
+	// int 	i = 1; /*if we continue on the path as below*/
 
+/*The goal is to push all but the 10 biggest values to B, then start sorting 
+chuncks of 10; when there is a different multiple of ten, then when we are under
+20, we use ft_lstsize(*sta) % 10 to push the odd number over which should leave us
+with 10 remaining in stack A
+*/
+/*OK we need to do a first push when it is not a multiple of ten
+This is just the first check to push that amount over to b, before the big push*/
 	if (ft_lstsize(*sta) % 10 != 0)
 	{
 		n = ft_lstsize(*sta) % 10;
+		ft_printf("START FIRST PUSH TO B\n");
+		ft_printf("STACK A in sort function\n");
+		print_stack(*sta);
 		first_ptob(sta, &stb, n);
 	}
-	if (ft_lstsize(*sta) >= 10)	/*((ft_lstsize(*sta)) > (ft_lstsize(*sta) / 2) && ft_lstsize(*sta) >= 9)*/
+/*Then we will loop through and push stacks of 10*/
+/*THIS IS THE PROBLM, YOU SEE TAHT IT SHOULD BE 'IF' BECUASE WHILE
+STA > 10 WILL ALWAYS BE THE CASE*/
+	if (ft_lstsize(*sta) > 10)	/*((ft_lstsize(*sta)) > (ft_lstsize(*sta) / 2) && ft_lstsize(*sta) >= 9)*/
 	{
-		while (ft_lstsize(*sta) >= 20)
+		n = 10;
+		sm_as = find_n_smallest(*sta, n);
+		if (!sm_as)
+			return;
+ 		while (!all_smalls_ptob(*sta, sm_as, n))
 		{
-			n = 10;
-			sm_as = find_n_smallest(*sta, n);
-			if (!sm_as)
-				return;
- 			while (!all_smalls_ptob(*sta, sm_as, n))
-			{
-				if (is_in_smallest(ft_atoi((*sta)->ct), sm_as, n)) /*Just changed this from !is_in... to is_in...*/
-					ptob(sta, &stb);
-				else
-					ra(sta);
-			}
-			free(sm_as);
-			sort_10_ina(sta, stb); /*&stb is used if it is passed to a double pointer*/
+			if (is_in_smallest(ft_atoi((*sta)->ct), sm_as, n)) /*Just changed this from !is_in... to is_in...*/
+				ptob(sta, &stb);
+			else
+				ra(sta);
 		}
-	}
-	if (ft_lstsize(*sta) == 10)
-		sort_10_ina(sta, stb);
-	/*THIS SHOULD BE IT, IF WE CAN FIX THE LOGIC IN SORT_10_INB() WE SHOULD BE GOOD*/
-	while (stb && ft_lstsize(stb) >= 10)
-			sort_10_inb(sta, stb);
-	if (stb && ft_lstsize(stb) >= 5)
-	ft_printf("Start sort_5_inb()\n");
-		sort_5_inb(sta, stb);
-	while (stb != NULL)
-	{
-		ft_printf("STACK B AT END OF SORT; n = %d\n", ft_lstsize(stb));
+		free(sm_as);
+		
+		sort_10_ina(sta, stb); /*&stb is used if it is passed to a double pointer*/
+		
+		ft_printf("END sort_10_ina(sta, stb);\n");
+		ft_printf("STACK A ; n = %d\n", ft_lstsize(*sta));
+		print_stack(*sta);
+		ft_printf("STACK B; n = %d\n", ft_lstsize(stb));
 		print_stack(stb);
-		ft_printf("PUSHING ERROR Entering last while (stb when there should be nothing)\n");
-		break ;
-		// if (ft_lstsize(stb) >= 3)
-		// 	sort3inb(sta, &stb);
-		// else
-		// 	ptoa(sta, &stb);
-		// if (*sta && (*sta)->nt && ft_atoi((*sta)->ct) > ft_atoi((*sta)->nt->ct))
-		// 	sa(sta);
 	}
+	/*THIS SHOULD BE IT, IF WE CAN FIX THE LOGIC IN SORT_10_INB() WE SHOULD BE GOOD*/
+	if (ft_lstsize(stb) >= 10)
+		sort_10_inb(sta, stb);
+	// ft_printf("STACK B AT END OF SORT 10 inB in SORT(); n = %d\n", ft_lstsize(stb));
+	// print_stack(stb);
+	// while (stb)
+	// {
+   	// 	ptoa(sta, &stb);
+	// 	if (*sta && (*sta)->nt && ft_atoi((*sta)->ct) > ft_atoi((*sta)->nt->ct))
+	// 		sa(sta);
+	// }
+	ft_printf("STACK A AT END OF SORT; n = %d\n", ft_lstsize(*sta));
+	print_stack(*sta);
+	ft_printf("STACK B AT END OF SORT; n = %d\n", ft_lstsize(stb));
+	print_stack(stb);
 }
+
+/*TEN	TEN	TEN	TEN		TEN	TEN*/
+/*TEN	TEN	TEN	TEN		TEN	TEN*/
 
 void start_sort(t_list **sta)
 {
@@ -146,6 +166,11 @@ void start_sort(t_list **sta)
 		sort3(sta);
 	else if (lstsize == 4)
 		sort4(sta);
+
+/*	NOTE THIS WILL HAVE TO BE MODIFIED TO HANDLE THE 5 AND 10 CASES
+	else if (ft_lstsize(sta) > 4 && ft_lstsize(sta) <= 10)
+		sort_10_ina(sta, stb);
+*/
 	else
 		sort(sta);
 }

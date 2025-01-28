@@ -6,7 +6,7 @@
 /*   By: ekosnick <ekosnick@student.42.f>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 10:51:11 by peatjohnsto       #+#    #+#             */
-/*   Updated: 2025/01/23 16:07:25 by ekosnick         ###   ########.fr       */
+/*   Updated: 2025/01/28 12:13:33 by ekosnick         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 // 5 24 421 9 78 1 549 -41 54 101 38 389 -12 -1 87 999 15882 4 74 45 20 3 14
 // 5 2 4 9 22 54 41 8 1 89 11 87 21 23 25 46 123 321 5412 84 151 -5 -1 -8
 // valgrind --leak-check=full --track-origins=yes ./push_swap 16 88 10 8 12 1 111 6 19 4 -55 15 9 14 7 -11 13 2 18 3 20 17 100 55 44 31 -5 29 -8 201 -2 11 5 666 0 25 26 30 -15684 42 -545 32
-
+// 16 88 10 8 12 1 111 6 19 4 97 98 99 100 90 91 92 93 94 0 5
 
 // https://github.com/o-reo/push_swap_visualizer
 // Visualizer: ./bin/visualizer
@@ -160,7 +160,7 @@ int	main(int subitizer, char **beans)
 			ft_printf("Error\n");
 			clean_and_exit(nums, len, NULL, 1);
 		}
-		ft_printf("Number of Items: %d\n", len); /*This is my counter remove for final*/
+		// ft_printf("Number of Items: %d\n", len); /*This is my counter remove for final*/
 		sta = NULL;
 		while (len--)
 		{

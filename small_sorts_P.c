@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   small_sorts.c                                      :+:      :+:    :+:   */
+/*   small_sorts_P.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ekosnick <ekosnick@student.42.f>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 15:33:56 by ekosnick          #+#    #+#             */
-/*   Updated: 2025/01/28 13:44:40 by ekosnick         ###   ########.fr       */
+/*   Updated: 2025/01/28 12:06:40 by ekosnick         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,8 @@ void	sort3ina(t_list **sta, t_list **stb)
 		sa_fst_hi(fst, sec, thr, sta, stb);
 }
 
+
+
 // Have to re-write this so that if you have to rotate, then you will check the other stack if it needs
 // to be rotated as well, becuase you will have to reverse rotate to get this values back and so 
 // you will check the other stack for that as well. It might actually work to the benefit of sorting
@@ -136,10 +138,12 @@ void sort3inb(t_list **sta, t_list **stb)
 	fst = ft_atoi((*stb)->ct);
 	sec = ft_atoi((*stb)->nt->ct);
 	thr = ft_atoi((*stb)->nt->nt->ct);
+	ft_printf("STACK A from start of sort3inb(); n = %d\n", ft_lstsize(*sta));
+	print_stack(*sta);
+	ft_printf("STACK B from start of sort3inb(); n = %d\n", ft_lstsize(*stb));
+	print_stack(*stb);
 	if (fst > sec && sec > thr) /*inverted condition*/
 	{
-		if (*sta && (*sta)->nt && ft_atoi((*sta)->ct) > ft_atoi((*sta)->nt->ct))
-			sa(sta);
 		ptoa(sta, stb);
 		ptoa(sta, stb);
 		ptoa(sta, stb);
@@ -184,8 +188,8 @@ void sort3inb(t_list **sta, t_list **stb)
 			ss(sta, stb);
 		else
 			sb(stb);
-		ptoa(sta, stb);
 		rrb(stb);
+		ptoa(sta, stb);
 		ptoa(sta, stb);
 	}
 	else if (fst > sec && fst > thr)
@@ -197,6 +201,10 @@ void sort3inb(t_list **sta, t_list **stb)
 		ptoa(sta, stb);
 		ptoa(sta, stb);
 	}
+	ft_printf("STACK A from END of sort3inb(); n = %d\n", ft_lstsize(*sta));
+	print_stack(*sta);  /*WHY DOES THIS CREATE AN INFINATE LOOP if 12 digits?*/
+	ft_printf("STACK B from END of sort3inb(); n = %d\n", ft_lstsize(*stb));
+	print_stack(*stb);
 }
 
 // this works!!!!!!!!!
@@ -231,6 +239,56 @@ void sort4(t_list **sta)
 	if (stb)
 		ptoa(sta, &stb);
 }
+
+/*this function is used when stb is already established*/
+void sort4ord(t_list **sta, t_list **stb)
+{
+	int min;
+	
+	if (!sta || !*sta || !(*sta)->nt)
+		return ;
+	min = min_sta(*sta);
+	if (ft_atoi((*sta)->ct) == min)  /*&& !sorted(*sta)*/
+		ptob(sta, stb);
+	else if (ft_atoi(ft_lstlast(*sta)->ct) == min)
+	{
+		rra(sta);
+		if (!sorted(*sta))
+			ptob(sta, stb);
+	}
+	else
+	{
+		while ((ft_lstsize(*sta) > 3) && ft_atoi((*sta)->ct) != min)
+		{
+			ra(sta);
+			if (ft_atoi((*sta)->ct) == min && !sorted(*sta))
+				ptob(sta, stb);
+		}
+	}
+	/****************************** */
+	// Use this part here to nt->nt->ct for top three of stb, sort3(stb), then ptoa.
+	if (ft_lstsize(*sta) == 3)
+		sort3(sta);
+	if (stb)
+		ptoa(sta, stb);
+}
+
+// void	four_nine(t_list **sta, t_list *stb)
+// {
+// 	int	*sm_as;
+	
+// 	sm_as = find_n_smallest(*sta, 4);
+// 		if (!sm_as)
+// 			return;
+// 		while (!all_smalls_ptob(*sta, sm_as, n))
+// 		{
+// 			if (is_in_smallest(ft_atoi((*sta)->ct), sm_as, n)) /*Just changed this from !is_in... to is_in...*/
+// 				ptob(sta, &stb);
+// 			else
+// 				ra(sta);
+// 		}
+// 		free(sm_as);
+// }		
 
 int	min_sta(t_list *sta)
 {
