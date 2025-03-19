@@ -1,4 +1,4 @@
-/* ************************************************************************** */
+/******************************************************************************/
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
@@ -6,9 +6,9 @@
 /*   By: ekosnick <ekosnick@student.42.f>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 13:50:33 by ekosnick          #+#    #+#             */
-/*   Updated: 2025/01/20 10:32:47 by ekosnick         ###   ########.fr       */
+/*   Updated: 2025/03/19 12:16:18 by ekosnick         ###   ########.fr       */
 /*                                                                            */
-/* ************************************************************************** */
+/******************************************************************************/
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
@@ -23,11 +23,16 @@
 // include "/home/peatjohnston/_42/github/libft/libft.h"
 // # include "../libft/libft.h"
 
-// typedef struct s_list
-// {
-// 	void			*ct;
-// 	struct	s_list	*nt;
-// } t_list;
+typedef struct s_list
+{
+	int				ct;
+	int				pos;
+	int				index;
+	int				target;
+	int				costfora;
+	int				costforb;
+	struct	s_list	*nt;
+} t_list;
 
 /*push_swap*/
 // char		**freeme(char **nums, int index);
@@ -35,6 +40,7 @@ int			sorted(t_list *sta);
 int			inverted(t_list *st);
 int			process_beans(char ***nums, char **beans, char *delim);
 void		print_stack(t_list *sta);
+t_list		fill_stack(nums, len);
 
 /*small_sorts*/
 void		sort3(t_list **sta);
