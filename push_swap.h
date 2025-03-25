@@ -1,4 +1,4 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
@@ -6,9 +6,9 @@
 /*   By: ekosnick <ekosnick@student.42.f>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 13:50:33 by ekosnick          #+#    #+#             */
-/*   Updated: 2025/03/19 12:16:18 by ekosnick         ###   ########.fr       */
+/*   Updated: 2025/03/25 11:57:02 by ekosnick         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
@@ -23,16 +23,16 @@
 // include "/home/peatjohnston/_42/github/libft/libft.h"
 // # include "../libft/libft.h"
 
-typedef struct s_list
-{
-	int				ct;
-	int				pos;
-	int				index;
-	int				target;
-	int				costfora;
-	int				costforb;
-	struct	s_list	*nt;
-} t_list;
+// typedef struct s_list
+// {
+// 	int				ct;
+// 	int				pos;
+// 	int				index;
+// 	int				target;
+// 	int				costfora;
+// 	int				costforb;
+// 	struct	s_list	*nt;
+// } t_list;
 
 /*push_swap*/
 // char		**freeme(char **nums, int index);
@@ -40,7 +40,7 @@ int			sorted(t_list *sta);
 int			inverted(t_list *st);
 int			process_beans(char ***nums, char **beans, char *delim);
 void		print_stack(t_list *sta);
-t_list		fill_stack(nums, len);
+t_list		*fill_stack(char **nums, int len);
 
 /*small_sorts*/
 void		sort3(t_list **sta);
@@ -55,7 +55,7 @@ void		sa_fst_lo(int fst,int sec,int thr, t_list **sta, t_list **stb);
 void		sa_fst_hi(int fst,int sec,int thr, t_list **sta, t_list **stb);
 
 /*start_sort*/
-void		start_sort(t_list **sta);
+void		start_sort(t_list **sta, t_list **stb);
 int			not_valid(char **nums);
 int			all_smalls_ptob(t_list *sta, int *smallest, int n);
 int			all_bigs_ptoa(t_list *st, int *biggest, int n);

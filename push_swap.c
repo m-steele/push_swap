@@ -1,4 +1,4 @@
-/******************************************************************************/
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
@@ -6,9 +6,9 @@
 /*   By: ekosnick <ekosnick@student.42.f>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 10:51:11 by peatjohnsto       #+#    #+#             */
-/*   Updated: 2025/03/19 12:19:16 by ekosnick         ###   ########.fr       */
+/*   Updated: 2025/03/25 11:59:57 by ekosnick         ###   ########.fr       */
 /*                                                                            */
-/******************************************************************************/
+/* ************************************************************************** */
 
 #include "push_swap.h"
 
@@ -114,8 +114,7 @@ int	process_beans(char ***nums, char **beans, char *delim)
 	return (i);
 }
 
-
-t_list	fill_stack(nums, len)
+t_list	*fill_stack(char **nums, int len)
 {
 	t_list	*sta;
 	t_list	*new_node;
@@ -134,6 +133,7 @@ t_list	fill_stack(nums, len)
 int	main(int subitizer, char **beans)
 {
 	int		len;
+	char	**nums; /*may handle this differently in future*/
 	t_list	*sta;
 	t_list	*stb;
 
@@ -157,36 +157,3 @@ int	main(int subitizer, char **beans)
 	}
 	return (0);
 }
-
-/*int	main(int subitizer, char **beans)
-{
-	int		len;
-	char	**nums;
-	t_list	*sta;
-	t_list	*new_node;
-
-	if (subitizer > 1)
-	{
-		len = process_beans(&nums, beans + 1, " ");
-		if (!len || not_valid(nums))
-		{
-			ft_printf("Error\n");
-			clean_and_exit(nums, len, NULL, 1);
-		}
-		sta = NULL;
-		while (len--)
-		{
-			new_node = ft_lstnew(nums[len]);
-			if (!new_node)
-				clean_and_exit(nums, len, sta, 1);
-			ft_lstadd_front(&sta, new_node);
-		}
-		if (!sorted(sta))
-			start_sort(&sta); 
-		ft_lstclear(&sta, free);
-		sta = NULL;
-		free(nums);
-	}
-	return (0);
-}
-*/

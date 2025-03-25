@@ -6,7 +6,7 @@
 #    By: ekosnick <ekosnick@student.42.f>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/25 09:57:19 by ekosnick          #+#    #+#              #
-#    Updated: 2025/01/13 09:34:34 by ekosnick         ###   ########.fr        #
+#    Updated: 2025/03/25 10:36:12 by ekosnick         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ CC = cc
 RM = rm -f
 CFLAGS = -Wall -Wextra -Werror -g
 
-#source 'c' and object 'o' files
+#source 'c' and object 'o' files takes them from libft folder!!!
 SRCS =	../libft/process_xx.c ../libft/process_x.c	\
 		../libft/process_u.c ../libft/process_s.c \
 		../libft/process_p.c ../libft/process_id.c \
