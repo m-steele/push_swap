@@ -6,7 +6,7 @@
 /*   By: ekosnick <ekosnick@student.42.f>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 12:20:04 by ekosnick          #+#    #+#             */
-/*   Updated: 2025/03/25 11:30:32 by ekosnick         ###   ########.fr       */
+/*   Updated: 2025/04/10 12:27:32 by ekosnick         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,74 +37,40 @@ int	all_bigs_ptoa(t_list *st, int *biggest, int n)
 	return (1);
 }
 
-void first_ptob(t_list **sta, t_list **stb, int *sm_as, int n)
-{
-    if (!sm_as)
-        return;
-    while (!all_smalls_ptob(*sta, sm_as, n))
-    {
-        if (is_in_smallest(ft_atoi((*sta)->ct), sm_as, n)) /*Just changed this from !is_in... to is_in...*/
-            ptob(sta, stb); /*Basically we are just pushing everything to B with a few conditions*/
-        else
-            ra(sta);
-    }
-    free(sm_as); // Free sm_as directly
-}
+/*20250410: COMPLETELY changing tacktics to push all but last three, then will
+sort from B around the placement of those in A. Also, will use n and sm_as
+to divide the bulk of the fptob into largest and smallest*/
 
-void	sort(t_list **sta, t_list **stb)
+void	first_ptob(t_list **sta, t_list **stb)
 {
 	int		*sm_as; /*the n smallest values in stack A*/
-	int 	n; /*this is in place to chunking 50% or some other ratio*/
+	int 	n;
+	int		pushed;
+	int		i;
 
-    /* The goal is to push all but the 10 biggest values to B, then start sorting 
-    chunks of 10; when there is a different multiple of ten, then when we are under
-    20, we use ft_lstsize(*sta) % 10 to push the odd number over which should leave us
-    with 10 remaining in stack A */
+	n = ft_lstsize(*sta);
+	sm_as = find_n_smallest(*sta, n / 2);
+	pushed = 0;
+	i = 0;
 
-    // OK we need to do a first push when it is not a multiple of ten
-    if (ft_lstsize(*sta) % 10 != 1)
-    {
-        n = ft_lstsize(*sta) % 10;
-        sm_as = find_n_smallest(*sta, n);
-        if (!sm_as)
-            return;
-        first_ptob(sta, stb, sm_as, n);
-    }
-
-    /* Then we will loop through and push stacks of 10 */
-    while (ft_lstsize(*sta) > 20)
-    {
-        n = 10;
-        sm_as = find_n_smallest(*sta, n);
-        if (!sm_as)
-            return;
-        while (!all_smalls_ptob(*sta, sm_as, n))
-        {
-            if (is_in_smallest(ft_atoi((*sta)->ct), sm_as, n))
-            {
-                ptob(sta, stb);
-                if (ft_atoi((*stb)->ct) < ft_atoi((*stb)->nt->ct))
-                    sb(stb);
-                if (ft_atoi((*stb)->ct) < ft_atoi(ft_lstlast(*stb)->ct))
-                {
-                    if (!is_in_smallest(ft_atoi((*sta)->ct), sm_as, n))
-                        rr(sta, stb);
-                    else
-                        rb(stb);
-                }
-            }
-            else if (ft_atoi((*stb)->ct) < ft_atoi((*stb)->nt->ct) && ft_atoi((*stb)->ct) < ft_atoi(ft_lstlast(*stb)->ct))
-                rr(sta, stb);
-            else
-                ra(sta);
-        }
-        free(sm_as);
-        ft_printf("END OF THE INITIAL PUSH\n");
-        ft_printf("STACK A in sort function\n");
-        print_stack(*sta);
-        ft_printf("STACK B in sort function\n");
-        print_stack(*stb);
-    }
+	while (n > 6 && i < n && pushed < n / 2)
+	{
+		if (is_in_smallest(ft_atoi((*sta)->ct), sm_as, n / 2))
+		{
+			ptob(sta, stb);
+			pushed++;
+		}
+		else
+			ra(sta);
+		i++;
+	}
+	while (n - pushed > 3)
+	{
+		ptob(sta, stb);
+		pushed++;
+	}
+	print_stack(*sta);
+	print_stack(*stb);
 }
 
 void start_sort(t_list **sta, t_list **stb)
@@ -118,8 +84,27 @@ void start_sort(t_list **sta, t_list **stb)
 		sa(sta);
 	else if (lstsize == 3)
 		sort3(sta);
-	else if (lstsize == 4)
-		sort4(sta);
 	else
-		sort(sta, stb);
+		first_ptob(sta, stb);
+	sort3(sta);
+
+/* STOPPED HERE 20250410 -> Need to create:
+		id_target(sta, stb);
+		negotiate_price(sta, stb);
+		pay_cheapest(sta, stb);
+*/
+	
+	while (*stb)
+	{
+		id_target(sta, stb);
+		negotiate_price(sta, stb);
+		pay_cheapest(sta, stb);
+	}
+	if (!sorted(*sta))
+/*NOT sure about the code below for handling the end of it.*/
+	{
+		while (ft_lstsize(*sta) > 3)
+			ptoa(sta, stb);
+		sort3(sta);
+	}
 }

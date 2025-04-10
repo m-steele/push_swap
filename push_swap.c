@@ -6,7 +6,7 @@
 /*   By: ekosnick <ekosnick@student.42.f>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 10:51:11 by peatjohnsto       #+#    #+#             */
-/*   Updated: 2025/03/25 11:59:57 by ekosnick         ###   ########.fr       */
+/*   Updated: 2025/04/10 09:49:06 by ekosnick         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,20 @@
 // https://github.com/o-reo/push_swap_visualizer
 // Visualizer: ./bin/visualizer
 
+/*Prints the stack in order from left to write
+then provides the Total count of items, indented*/
 void	print_stack(t_list *sta)
 {
+	int n;
+	
+	n = 0;
 	while (sta)
 	{
-		ft_printf("%s\n", sta->ct);
+		ft_printf("%s, ", sta->ct);
 		sta = sta->nt;
+		n++;
 	}
+	ft_printf("\n  Total: %d\n", n);
 }
 
 // cleanup function
