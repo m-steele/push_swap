@@ -6,7 +6,7 @@
 /*   By: ekosnick <ekosnick@student.42.f>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 10:51:11 by peatjohnsto       #+#    #+#             */
-/*   Updated: 2025/04/10 09:49:06 by ekosnick         ###   ########.fr       */
+/*   Updated: 2025/04/23 10:37:28 by ekosnick         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 // 16 88 10 8 12 1 111 6 19 4 97 98 99 100 90 91 92 93 94 0 5
 
 // https://github.com/o-reo/push_swap_visualizer
-// Visualizer: ./bin/visualizer
+// ..push_swap/visualizer/build$ ./bin/visualizer
 
 /*Prints the stack in order from left to write
 then provides the Total count of items, indented*/

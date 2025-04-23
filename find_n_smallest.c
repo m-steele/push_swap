@@ -6,7 +6,7 @@
 /*   By: ekosnick <ekosnick@student.42.f>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 12:33:11 by ekosnick          #+#    #+#             */
-/*   Updated: 2025/04/10 11:44:45 by ekosnick         ###   ########.fr       */
+/*   Updated: 2025/04/23 09:38:35 by ekosnick         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	*find_n_smallest(t_list *sta, int n)
 	init_sm_array(smallest, n);
 	while (sta)
 	{
-		val = ft_atoi(sta->ct);
+		val = atoi(sta->ct);
 		sm_array(smallest, n, val);
 		sta = sta->nt;
 	}

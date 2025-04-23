@@ -6,35 +6,43 @@
 /*   By: ekosnick <ekosnick@student.42.f>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 12:20:04 by ekosnick          #+#    #+#             */
-/*   Updated: 2025/04/10 12:27:32 by ekosnick         ###   ########.fr       */
+/*   Updated: 2025/04/23 13:43:38 by ekosnick         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// Note wea re changing the name of this from startsortTEN.c to start_sort.c so we can check if we can process 5 and 10
-/*TEN	TEN	TEN	TEN		TEN	TEN*/
-
 #include "push_swap.h"
 
-int	all_smalls_ptob(t_list *sta, int *smallest, int n)
-{
-	while (sta)
-	{
-		if (is_in_smallest(ft_atoi(sta->ct), smallest, n))
-			return (0);
-		sta = sta->nt;
-	}
-	return (1);
-}
 
-int	all_bigs_ptoa(t_list *st, int *biggest, int n)
+// Note that there may issues with the use of ft_atoi or NOT using it.
+// You should think about testing this with based on the error return.
+// The next step would be to see if it compiles after removing the ft_atoi().
+void calculate_index(t_list *sta, int lstsize)
 {
-	while (st)
+	t_list	*tmp;
+	t_list	*highest;
+	int		current;
+
+	while (--lstsize > 0)
 	{
-		if (is_in_biggest(ft_atoi(st->ct), biggest, n))
-			return (0);
-		st = st->nt;
+		tmp = sta;
+		highest = NULL;
+		current = INT_MIN;
+		while (tmp)
+		{
+			if (atoi(tmp->ct) == INT_MIN && tmp->index == 0)
+				tmp->index = 1;
+			if (atoi(tmp->ct) > current && tmp->index == 0)
+			{
+				current = atoi(tmp->ct);
+				highest = tmp;
+				tmp = sta;
+			}
+			else
+				tmp = tmp->nt;
+		}
+		if (highest != NULL)
+			highest->index = lstsize;
 	}
-	return (1);
 }
 
 /*20250410: COMPLETELY changing tacktics to push all but last three, then will
@@ -69,15 +77,13 @@ void	first_ptob(t_list **sta, t_list **stb)
 		ptob(sta, stb);
 		pushed++;
 	}
-	print_stack(*sta);
-	print_stack(*stb);
 }
 
 void start_sort(t_list **sta, t_list **stb)
 {
 	int	lstsize;
 
-	lstsize = ft_lstsize(*sta); 
+	lstsize = ft_lstsize(*sta);
 	if (!sta || !*sta)
 		return ;
 	if (lstsize == 2)
@@ -85,26 +91,30 @@ void start_sort(t_list **sta, t_list **stb)
 	else if (lstsize == 3)
 		sort3(sta);
 	else
+	{
+		calculate_index(*sta, lstsize);
 		first_ptob(sta, stb);
-	sort3(sta);
-
-/* STOPPED HERE 20250410 -> Need to create:
-		id_target(sta, stb);
-		negotiate_price(sta, stb);
-		pay_cheapest(sta, stb);
-*/
-	
-	while (*stb)
-	{
-		id_target(sta, stb);
-		negotiate_price(sta, stb);
-		pay_cheapest(sta, stb);
-	}
-	if (!sorted(*sta))
-/*NOT sure about the code below for handling the end of it.*/
-	{
-		while (ft_lstsize(*sta) > 3)
-			ptoa(sta, stb);
 		sort3(sta);
 	}
+// everything appears to work at this point
+	while (*stb)
+	{
+		id_target(sta, stb);/*--> id_target seems fine for now.*/
+		negotiate_price(sta, stb);
+		pay_cheapest(sta, stb);
+	}
+	print_stack(*sta);
+	print_stack(*stb);
 }
+	// if (!sorted(*sta))
+/*NOT sure about the code below for handling the end of it.*/
+	// {
+	// 	while (ft_lstsize(*sta) > 3)
+	// 		ptoa(sta, stb);
+	// 	sort3(sta);
+	// }
+
+
+/*use these as trackers:
+print_stack(*sta);
+print_stack(*stb);*/

@@ -6,7 +6,7 @@
 /*   By: ekosnick <ekosnick@student.42.f>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 13:50:33 by ekosnick          #+#    #+#             */
-/*   Updated: 2025/03/25 11:57:02 by ekosnick         ###   ########.fr       */
+/*   Updated: 2025/04/23 13:38:38 by ekosnick         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 
 // typedef struct s_list
 // {
-// 	int				ct;
+// 	void			*ct;
 // 	int				pos;
 // 	int				index;
 // 	int				target;
@@ -57,26 +57,27 @@ void		sa_fst_hi(int fst,int sec,int thr, t_list **sta, t_list **stb);
 /*start_sort*/
 void		start_sort(t_list **sta, t_list **stb);
 int			not_valid(char **nums);
-int			all_smalls_ptob(t_list *sta, int *smallest, int n);
-int			all_bigs_ptoa(t_list *st, int *biggest, int n);
+// THESE BELOW HAVE BEEN REMOVED... CHECK OLDER COMMIT IF NEEDED
+// int			all_smalls_ptob(t_list *sta, int *smallest, int n);
+// int			all_bigs_ptoa(t_list *st, int *biggest, int n);
 
 /*find_n_smallest*/
 int			*find_n_smallest(t_list *sta, int n);
 int			is_in_smallest(int value, int *smallest, int n);
 
 /*find_n_biggest*/
-int			*find_n_biggest(t_list *sta, int n);
-int			is_in_biggest(int value, int *biggest, int n);
+// int			*find_n_biggest(t_list *sta, int n);
+// int			is_in_biggest(int value, int *biggest, int n);
 
 /*push_ops*/
-int			find_in_pos(t_list	*sta, int target);
-void		push_ops(t_list **sta, t_list **stb);
-void		push_into_pos(t_list **sta, int pos);
-int			mk_chunk(int size);
-void		sort_10_ina(t_list **sta, t_list *stb);
-void		sort_10_inb(t_list **sta, t_list *stb);
-void		sort_5_ina(t_list **sta, t_list *stb);
-void		sort_5_inb(t_list **sta, t_list *stb);
+// int			find_in_pos(t_list	*sta, int target);
+// void		push_ops(t_list **sta, t_list **stb);
+// void		push_into_pos(t_list **sta, int pos);
+// int			mk_chunk(int size);
+// void		sort_10_ina(t_list **sta, t_list *stb);
+// void		sort_10_inb(t_list **sta, t_list *stb);
+// void		sort_5_ina(t_list **sta, t_list *stb);
+// void		sort_5_inb(t_list **sta, t_list *stb);
 
 /*push*/
 void		ptoa(t_list **sta, t_list **stb);
@@ -101,5 +102,12 @@ void		rrb(t_list **stb);
 void        rra_no_write(t_list **sta);
 void        rrb_no_write(t_list **stb);
 void		rrr(t_list **sta, t_list **stb);
+
+// /*id_target*/
+void		id_target(t_list **sta, t_list **stb);
+void		pay_cheapest(t_list **sta, t_list **stb);
+void		negotiate_price(t_list **sta, t_list **stb);
+// static int	find_tget(t_list **sta, int b_index, int tget_index, int tget_id);
+// void		find_pos(t_list **st);
 
 #endif
