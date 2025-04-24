@@ -6,16 +6,12 @@
 /*   By: ekosnick <ekosnick@student.42.f>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 12:20:04 by ekosnick          #+#    #+#             */
-/*   Updated: 2025/04/23 13:43:38 by ekosnick         ###   ########.fr       */
+/*   Updated: 2025/04/23 20:41:36 by ekosnick         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-
-// Note that there may issues with the use of ft_atoi or NOT using it.
-// You should think about testing this with based on the error return.
-// The next step would be to see if it compiles after removing the ft_atoi().
 void calculate_index(t_list *sta, int lstsize)
 {
 	t_list	*tmp;
@@ -113,7 +109,6 @@ void start_sort(t_list **sta, t_list **stb)
 	// 		ptoa(sta, stb);
 	// 	sort3(sta);
 	// }
-
 
 /*use these as trackers:
 print_stack(*sta);

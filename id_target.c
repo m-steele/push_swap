@@ -6,7 +6,7 @@
 /*   By: ekosnick <ekosnick@student.42.f>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 12:47:41 by ekosnick          #+#    #+#             */
-/*   Updated: 2025/04/23 13:35:45 by ekosnick         ###   ########.fr       */
+/*   Updated: 2025/04/23 19:51:36 by ekosnick         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,12 +77,14 @@ void id_target(t_list **sta, t_list **stb)
 /*Assignign the cost for a and b moves */
 void negotiate_price(t_list **sta, t_list **stb)
 {
+	t_list *tmpa;
 	t_list *tmpb;
 	int 	sizea;
 	int 	sizeb;
 
 	tmpb = *stb;
-	sizea = ft_lstsize(*sta);/*Will we need to add tmpa?*/
+	tmpa = *sta;
+	sizea = ft_lstsize(tmpa);/*do we really need to add tmpa?*/
 	sizeb = ft_lstsize(tmpb);
 
 	while (tmpb)
@@ -93,10 +95,10 @@ void negotiate_price(t_list **sta, t_list **stb)
 		tmpb->costfora = tmpb->target;
 		if (tmpb->target > sizea / 2)
 			tmpb->costfora = (sizea - tmpb->target) * -1;
-		ft_printf("tmpbPOS = %d\n", tmpb->pos);
-		ft_printf("tmpTARGRET = %d\n", tmpb->target);
-		ft_printf("tmpCOST A = %d\n", tmpb->costfora);
-		ft_printf("tmpCOST B = %d\n", tmpb->costforb);
+		// ft_printf("\ntmpbPOS = %d\n", tmpb->pos);
+		// ft_printf("tmpTARGRET = %d\n", tmpb->target);
+		// ft_printf("tmpCOST A = %d\n", tmpb->costfora);
+		// ft_printf("tmpCOST B = %d\n", tmpb->costforb);
 		tmpb = tmpb->nt;
 	}
 }
@@ -131,6 +133,19 @@ static void	rot_n_push(t_list **sta, t_list **stb, int *costa, int *costb)
 	}
 	ptoa(sta, stb);
 }
+
+/*Need to fix this and done????*/
+// void	fin_sort(t_list **sta)
+// {
+// 	t_list	*tmpa;
+	
+// 	tmpa = *sta;
+// 	if (!sorted(*sta))
+// 	{
+// 		while (*sta->ct > ft_lstlast(sta)
+// 	}
+	
+// }
 
 /*find cheapest move and ptoa*/
 void	pay_cheapest(t_list **sta, t_list **stb)
@@ -171,4 +186,5 @@ void	pay_cheapest(t_list **sta, t_list **stb)
 		}
 	}
 	rot_n_push(sta, stb, &costa, &costb);
+	// fin_sort(sta);
 }
