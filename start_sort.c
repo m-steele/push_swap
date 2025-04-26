@@ -6,11 +6,21 @@
 /*   By: ekosnick <ekosnick@student.42.f>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 12:20:04 by ekosnick          #+#    #+#             */
-/*   Updated: 2025/04/23 20:41:36 by ekosnick         ###   ########.fr       */
+/*   Updated: 2025/04/26 16:24:33 by ekosnick         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+/*Need to fix this and done????*/
+void	fin_sort(t_list **sta)
+{
+	if (!sorted(*sta))
+	{
+		while (ft_atoi((*sta)->ct) > ft_atoi(ft_lstlast(*sta)->ct)) // Access and convert the last node's `ct`
+			rra(sta);
+	}
+}
 
 void calculate_index(t_list *sta, int lstsize)
 {
@@ -92,23 +102,26 @@ void start_sort(t_list **sta, t_list **stb)
 		first_ptob(sta, stb);
 		sort3(sta);
 	}
-// everything appears to work at this point
 	while (*stb)
 	{
 		id_target(sta, stb);/*--> id_target seems fine for now.*/
 		negotiate_price(sta, stb);
 		pay_cheapest(sta, stb);
 	}
-	print_stack(*sta);
-	print_stack(*stb);
+	
+	/*SEEMS THERE IS A PROBLEM WITH ID_TARGET WHEN THERE IS > 250 NUMBERS
+	AND THE FIRST SEVERAL ARE JUST PUSHED DIRECTLY WITHOUT ANY CONSIDERATION
+	FOR THE COSTA OR COSTB, THIS COULD BE REALTED TO THE MEMORY LEAKS FROM THIS 
+	SET OF FUNCTIONS THAT CALCULATES THESE, THE INDEXES AND TARGETS
+	
+	THAT SAID, YOU MIGHT BE ABLE TO SIMPLY RECURSE THE START_SORT() AGAIN TO COMPLETE
+	THE JOB OR IMPLEMENT 
+	if (!sorted(sta))
+		if (sta->index !> sta->index->index)
+	THEN SOME CLOSING OPERATION TO PUSH THESE LAST BITS OVER THEN APPLY A SORT 
+	FUNCTION TO GET THE REMAINDERS*/
+	fin_sort(sta);
 }
-	// if (!sorted(*sta))
-/*NOT sure about the code below for handling the end of it.*/
-	// {
-	// 	while (ft_lstsize(*sta) > 3)
-	// 		ptoa(sta, stb);
-	// 	sort3(sta);
-	// }
 
 /*use these as trackers:
 print_stack(*sta);

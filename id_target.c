@@ -6,7 +6,7 @@
 /*   By: ekosnick <ekosnick@student.42.f>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 12:47:41 by ekosnick          #+#    #+#             */
-/*   Updated: 2025/04/23 19:51:36 by ekosnick         ###   ########.fr       */
+/*   Updated: 2025/04/26 16:11:32 by ekosnick         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ void id_target(t_list **sta, t_list **stb)
 		tmpb->target = target_id;
 		tmpb = tmpb->nt;
 	}
-	// ft_printf("target id: %d\n", target_id);
 }
 
 /*Assignign the cost for a and b moves */
@@ -105,19 +104,6 @@ void negotiate_price(t_list **sta, t_list **stb)
 
 static void	rot_n_push(t_list **sta, t_list **stb, int *costa, int *costb)
 {
-	while (*costa)
-	{
-		if (*costa > 0)
-		{
-			ra(sta);
-			(*costa)--;
-		}
-		else if (*costa < 0)
-		{
-			rra(sta);
-			(*costa)++;
-		}
-	}
 	while (*costb)
 	{
 		if (*costb > 0)
@@ -131,21 +117,21 @@ static void	rot_n_push(t_list **sta, t_list **stb, int *costa, int *costb)
 			(*costb)++;
 		}
 	}
+	while (*costa)
+	{
+		if (*costa > 0)
+		{
+			ra(sta);
+			(*costa)--;
+		}
+		else if (*costa < 0)
+		{
+			rra(sta);
+			(*costa)++;
+		}
+	}
 	ptoa(sta, stb);
 }
-
-/*Need to fix this and done????*/
-// void	fin_sort(t_list **sta)
-// {
-// 	t_list	*tmpa;
-	
-// 	tmpa = *sta;
-// 	if (!sorted(*sta))
-// 	{
-// 		while (*sta->ct > ft_lstlast(sta)
-// 	}
-	
-// }
 
 /*find cheapest move and ptoa*/
 void	pay_cheapest(t_list **sta, t_list **stb)
@@ -186,5 +172,4 @@ void	pay_cheapest(t_list **sta, t_list **stb)
 		}
 	}
 	rot_n_push(sta, stb, &costa, &costb);
-	// fin_sort(sta);
 }
