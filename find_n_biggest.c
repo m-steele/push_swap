@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   find_n_biggest.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekosnick <ekosnick@student.42.f>           +#+  +:+       +#+        */
+/*   By: ekosnick <ekosnick@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 12:33:11 by ekosnick          #+#    #+#             */
-/*   Updated: 2025/04/27 14:17:53 by ekosnick         ###   ########.fr       */
+/*   Updated: 2025/04/30 11:25:03 by ekosnick         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	bg_array(int *arr, int n, int val)
 				j--;
 			}
 			arr[i] = val;
-			break;
+			break ;
 		}
 		i++;
 	}
@@ -52,11 +52,11 @@ int	*f_n_b(t_list *sta, int n)
 	biggest = malloc(sizeof(int) * n);
 	if (!biggest)
 		return (NULL);
-	init_bg_array(biggest, n);/* Initialize the array with INT_MIN */
+	init_bg_array(biggest, n);
 	while (sta)
 	{
 		val = ft_atoi(sta->ct);
-		bg_array(biggest, n, val);/* Insert the value if it is among the n biggest */
+		bg_array(biggest, n, val);
 		sta = sta->nt;
 	}
 	return (biggest);
@@ -65,7 +65,7 @@ int	*f_n_b(t_list *sta, int n)
 // Helper function to check if a value is among the biggest
 int	inb(int value, int *biggest, int n)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < n)

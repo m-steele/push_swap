@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rotate.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekosnick <ekosnick@student.42.f>           +#+  +:+       +#+        */
+/*   By: ekosnick <ekosnick@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 12:58:23 by ekosnick          #+#    #+#             */
-/*   Updated: 2024/12/28 09:32:09 by ekosnick         ###   ########.fr       */
+/*   Updated: 2025/04/30 11:18:51 by ekosnick         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	rr(t_list **sta, t_list **stb)
 {
 	if (sta && *sta && (*sta)->nt)
 		ra_no_write(sta);
-	if (stb && *stb &&(*stb)->nt)
+	if (stb && *stb && (*stb)->nt)
 		rb_no_write(stb);
 	write(1, "rr\n", 3);
 }

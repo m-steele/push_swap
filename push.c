@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekosnick <ekosnick@student.42.f>           +#+  +:+       +#+        */
+/*   By: ekosnick <ekosnick@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 12:55:45 by ekosnick          #+#    #+#             */
-/*   Updated: 2024/12/20 12:40:30 by ekosnick         ###   ########.fr       */
+/*   Updated: 2025/04/30 11:26:58 by ekosnick         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	ptob(t_list **sta, t_list **stb)
 void	push(t_list **src, t_list **dst)
 {
 	t_list	*temp;
-	
+
 	if (!src || !*src)
 		return ;
 	temp = (*src)->nt;

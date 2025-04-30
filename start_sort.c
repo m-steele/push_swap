@@ -3,37 +3,54 @@
 /*                                                        :::      ::::::::   */
 /*   start_sort.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekosnick <ekosnick@student.42.f>           +#+  +:+       +#+        */
+/*   By: ekosnick <ekosnick@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 12:20:04 by ekosnick          #+#    #+#             */
-/*   Updated: 2025/04/30 07:06:12 by ekosnick         ###   ########.fr       */
+/*   Updated: 2025/04/30 12:52:36 by ekosnick         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-/*Need to fix this and done ????  static void*/
 static void	fin_sort(t_list **sta) /*, t_list **stb*/
 {
 	if (!sorted(*sta))
 	{
-		while (ft_atoi((*sta)->ct) > ft_atoi(ft_lstlast(*sta)->ct)) // Access and convert the last node's `ct`
+		while (ft_atoi((*sta)->ct) > ft_atoi(ft_lstlast(*sta)->ct))
 			rra(sta);
-		// while (!sorted(*sta))
-		// {
-		// 	rra(sta);
-		// 	ptob(sta, stb);
-		// }
-		// while (*stb)
-		// {
-		// 	id_target(sta, stb);
-		// 	negotiate_price(sta, stb);
-		// 	pay_cheapest(sta, stb);
-		// }
 	}
 }
 
-void calculate_index(t_list *sta, int lstsize)
+void	sort3(t_list **sta)
+{
+	int	fst;
+	int	sec;
+	int	thr;
+
+	fst = (*sta)->index;
+	sec = (*sta)->nt->index;
+	thr = (*sta)->nt->nt->index;
+	if (sorted(*sta))
+		return ;
+	if (fst < sec && fst < thr && sec > thr)
+	{
+		rra(sta);
+		sa(sta);
+	}
+	else if (fst > sec && sec > thr)
+	{
+		sa(sta);
+		rra(sta);
+	}
+	else if (fst < sec && sec > thr)
+		rra(sta);
+	else if (fst > sec && fst > thr)
+		ra(sta);
+	else
+		sa(sta);
+}
+
+void	calculate_index(t_list *sta, int lstsize)
 {
 	t_list	*tmp;
 	t_list	*highest;
@@ -62,15 +79,11 @@ void calculate_index(t_list *sta, int lstsize)
 	}
 }
 
-/*20250410: COMPLETELY changing tacktics to push all but last three, then will
-sort from B around the placement of those in A. Also, will use n and sm_as
-to divide the bulk of the fptob into largest and smallest*/
-
 void	first_ptob(t_list **sta, t_list **stb)
 {
-	int		*sm_as; /*the n smallest values in stack A*/
+	int		*sm_as;
 	int		*bg_as;
-	int 	n;
+	int		n;
 	int		pushed;
 	int		i;
 
@@ -78,8 +91,7 @@ void	first_ptob(t_list **sta, t_list **stb)
 	sm_as = find_n_smallest(*sta, n / 2);
 	pushed = 0;
 	i = 0;
-
-	while (/*n > 6 && */i < n && pushed < n / 2)
+	while (n > 5 && i < n && pushed < n / 2)
 	{
 		if (is_in_smallest(ft_atoi((*sta)->ct), sm_as, n / 2))
 		{
@@ -91,11 +103,10 @@ void	first_ptob(t_list **sta, t_list **stb)
 		i++;
 	}
 	free(sm_as);
-	bg_as = f_n_b(*sta, 1);/**/
-	sm_as = find_n_smallest(*sta, 1);
-	while (n - pushed > 3 )
+	bg_as = f_n_b(*sta, 1);
+	while (n - pushed > 3)
 	{
-		if (inb(ft_atoi((*sta)->ct), bg_as, 1) || is_in_smallest(ft_atoi((*sta)->ct), sm_as, 1))
+		if (inb(ft_atoi((*sta)->ct), bg_as, 1))
 			ra(sta);
 		else
 		{
@@ -104,12 +115,9 @@ void	first_ptob(t_list **sta, t_list **stb)
 		}
 	}
 	free(bg_as);
-	free(sm_as);
 }
 
-
-/*Seems likely that the index needs to be used instead of the values...*/
-void start_sort(t_list **sta, t_list **stb)
+void	start_sort(t_list **sta, t_list **stb)
 {
 	int	lstsize;
 
@@ -128,19 +136,9 @@ void start_sort(t_list **sta, t_list **stb)
 	}
 	while (*stb)
 	{
-		id_target(sta, stb);/*--> id_target seems fine for now.*/
+		id_target(sta, stb);
 		negotiate_price(sta, stb);
 		pay_cheapest(sta, stb);
 	}
-	/*
-	THEN SOME CLOSING OPERATION TO PUSH THESE LAST BITS OVER THEN APPLY A SORT 
-	FUNCTION TO GET THE REMAINDERS*/
 	fin_sort(sta);
-	// if (!sorted(*sta))
-	// 	start_sort(sta, stb);
-	// print_stack(*sta);
 }
-
-/*use these as trackers:
-print_stack(*sta);
-print_stack(*stb);*/

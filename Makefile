@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ekosnick <ekosnick@student.42.f>           +#+  +:+       +#+         #
+#    By: ekosnick <ekosnick@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/09/25 09:57:19 by ekosnick          #+#    #+#              #
-#    Updated: 2025/04/27 14:32:09 by ekosnick         ###   ########.fr        #
+#    Updated: 2025/04/30 12:21:54 by ekosnick         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,11 +31,9 @@ SRCS =	../libft/process_xx.c ../libft/process_x.c	\
 		../libft/ft_strchr.c ../libft/ft_abs.c \
 		push_swap.c not_valid.c start_sort.c \
 		swap.c rotate.c reverse.c push.c find_n_smallest.c \
-		find_n_biggest.c small_sorts.c id_target.c \
+		find_n_biggest.c utilities.c moveit.c \
 
 # push_ops.c
-# find_n_biggest.c deleted for now...
-
 OBJ = $(SRCS:.c=.o)
 
 NAME = push_swap

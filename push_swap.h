@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekosnick <ekosnick@student.42.f>           +#+  +:+       +#+        */
+/*   By: ekosnick <ekosnick@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 13:50:33 by ekosnick          #+#    #+#             */
-/*   Updated: 2025/04/29 10:57:54 by ekosnick         ###   ########.fr       */
+/*   Updated: 2025/04/30 13:08:18 by ekosnick         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,31 +35,18 @@
 // } t_list;
 
 /*push_swap*/
-// char		**freeme(char **nums, int index);
-int			sorted(t_list *sta);
-int			inverted(t_list *st);
 int			process_beans(char ***nums, char **beans, char *delim);
-void		print_stack(t_list *sta);
 t_list		*fill_stack(char **nums, int len);
 
-/*small_sorts*/
-void		sort3(t_list **sta);
-void		sort4(t_list **sta);
-// void		sort4ord(t_list **sta, t_list **stb);
-int			min_sta(t_list *sta);
-
-void		sort3inb(t_list **sta, t_list **stb);
-void		sort3ina(t_list **sta, t_list **stb);
-void		sa_fst_sec_hi(t_list **sta, t_list **stb);
-void		sa_fst_lo(int fst,int sec,int thr, t_list **sta, t_list **stb);
-void		sa_fst_hi(int fst,int sec,int thr, t_list **sta, t_list **stb);
+/*utilities*/
+int			sorted(t_list *sta);
+int			inverted(t_list *st);
+void		id_target(t_list **sta, t_list **stb);
 
 /*start_sort*/
 void		start_sort(t_list **sta, t_list **stb);
 int			not_valid(char **nums);
-// THESE BELOW HAVE BEEN REMOVED... CHECK OLDER COMMIT IF NEEDED
-// int			all_smalls_ptob(t_list *sta, int *smallest, int n);
-// int			all_bigs_ptoa(t_list *st, int *biggest, int n);
+void		sort3(t_list **sta);
 
 /*find_n_smallest*/
 int			*find_n_smallest(t_list *sta, int n);
@@ -68,16 +55,6 @@ int			is_in_smallest(int value, int *smallest, int n);
 /*find_n_biggest*/
 int			*f_n_b(t_list *sta, int n);
 int			inb(int value, int *biggest, int n);
-
-/*push_ops*/
-// int			find_in_pos(t_list	*sta, int target);
-// void		push_ops(t_list **sta, t_list **stb);
-// void		push_into_pos(t_list **sta, int pos);
-// int			mk_chunk(int size);
-// void		sort_10_ina(t_list **sta, t_list *stb);
-// void		sort_10_inb(t_list **sta, t_list *stb);
-// void		sort_5_ina(t_list **sta, t_list *stb);
-// void		sort_5_inb(t_list **sta, t_list *stb);
 
 /*push*/
 void		ptoa(t_list **sta, t_list **stb);
@@ -92,22 +69,19 @@ void		ss(t_list **sta, t_list **stb);
 // /*rotate*/
 void		ra(t_list **sta);
 void		rb(t_list **stb);
-void        ra_no_write(t_list **sta);
-void        rb_no_write(t_list **stb);
+void		ra_no_write(t_list **sta);
+void		rb_no_write(t_list **stb);
 void		rr(t_list **sta, t_list **stb);
 
 // /*reverse*/
 void		rra(t_list **sta);
 void		rrb(t_list **stb);
-void        rra_no_write(t_list **sta);
-void        rrb_no_write(t_list **stb);
+void		rra_no_write(t_list **sta);
+void		rrb_no_write(t_list **stb);
 void		rrr(t_list **sta, t_list **stb);
 
-// /*id_target*/
-void		id_target(t_list **sta, t_list **stb);
+// /*moveit*/
 void		pay_cheapest(t_list **sta, t_list **stb);
 void		negotiate_price(t_list **sta, t_list **stb);
-// static int	find_tget(t_list **sta, int b_index, int tget_index, int tget_id);
-// void		find_pos(t_list **st);
 
 #endif

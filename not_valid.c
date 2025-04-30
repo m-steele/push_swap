@@ -12,35 +12,7 @@
 
 #include "push_swap.h"
 
-static int is_valid(const char *nums)
-// {
-// 	long	num;
-// 	int		sign;
-// 	int		i;
-
-// 	if (!nums || !*nums)
-// 		return (0);
-// 	sign = 0;
-// 	if (*nums == '-' || *nums == '+')
-// 		sign = 1;
-// 	if (sign && !ft_isdigit(nums[sign]))
-// 		return (0);
-// 	num = 0;
-// 	i = sign;
-// 	while (nums[i] != '\0')
-// 	{
-// 		if (!ft_isdigit(nums[i]))
-// 			return (0);
-// 		num = num * 10 + (nums[i++] - '0');
-// 		if (num > INT_MAX && *nums != '-')
-// 			return (0);
-// 		if (num > (long)INT_MAX + 1 && *nums == '-')
-// 			return (0);
-// 		i++;
-// 	}
-//  	return (1);
-// }
-
+static int	is_valid(const char *nums)
 {
 	long	num;
 	int		sign;
@@ -48,7 +20,7 @@ static int is_valid(const char *nums)
 
 	if (!nums ||!*nums)
 		return (0);
-	sign = (*nums == '-' || *nums =='+');
+	sign = (*nums == '-' || *nums == '+');
 	i = sign;
 	if (!ft_isdigit(nums[i]))
 		return (0);
@@ -57,7 +29,7 @@ static int is_valid(const char *nums)
 	{
 		if (!ft_isdigit(nums[i]))
 			return (0);
-		num = num *  + (nums[i++] - '0');
+		num = num * + (nums[i++] - '0');
 		if (num > INT_MAX && *nums != '-')
 			return (0);
 		if (num > (long)INT_MAX + 1 && *nums == '-')
@@ -66,13 +38,13 @@ static int is_valid(const char *nums)
 	return (1);
 }
 
-static int duplicates(char **nums)
+static int	duplicates(char **nums)
 {
 	int	i;
 	int	j;
-	
+
 	i = 0;
-	while (nums[i] !=NULL)
+	while (nums[i] != NULL)
 	{
 		j = i + 1;
 		while (nums[j] != NULL)
@@ -86,7 +58,7 @@ static int duplicates(char **nums)
 	return (0);
 }
 
-int not_valid(char **nums)
+int	not_valid(char **nums)
 {
 	int	i;
 

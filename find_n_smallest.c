@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   find_n_smallest.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekosnick <ekosnick@student.42.f>           +#+  +:+       +#+        */
+/*   By: ekosnick <ekosnick@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 12:33:11 by ekosnick          #+#    #+#             */
-/*   Updated: 2025/04/23 09:38:35 by ekosnick         ###   ########.fr       */
+/*   Updated: 2025/04/30 11:26:04 by ekosnick         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	sm_array(int *smallest, int n, int val)
 				j--;
 			}
 			smallest[i] = val;
-			break;
+			break ;
 		}
 		i++;
 	}
@@ -66,7 +66,7 @@ int	*find_n_smallest(t_list *sta, int n)
 // Helper function to check if a value is among the smallest
 int	is_in_smallest(int value, int *smallest, int n)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < n)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   swap.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekosnick <ekosnick@student.42.f>           +#+  +:+       +#+        */
+/*   By: ekosnick <ekosnick@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 12:57:54 by ekosnick          #+#    #+#             */
-/*   Updated: 2024/12/20 12:41:46 by ekosnick         ###   ########.fr       */
+/*   Updated: 2025/04/30 11:28:42 by ekosnick         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	sa(t_list **sta)
 {
 	t_list	*first;
 	t_list	*second;
-	
+
 	if (!sta || !*sta || !(*sta)->nt)
 		return ;
 	first = *sta;
@@ -31,7 +31,7 @@ void	sb(t_list **stb)
 {
 	t_list	*first;
 	t_list	*second;
-	
+
 	if (!stb || !*stb || !(*stb)->nt)
 		return ;
 	first = *stb;
@@ -46,7 +46,7 @@ void	sa_no_write(t_list **sta)
 {
 	t_list	*first;
 	t_list	*second;
-	
+
 	if (!sta || !*sta || !(*sta)->nt)
 		return ;
 	first = *sta;
@@ -60,7 +60,7 @@ void	sb_no_write(t_list **stb)
 {
 	t_list	*first;
 	t_list	*second;
-	
+
 	if (!stb || !*stb || !(*stb)->nt)
 		return ;
 	first = *stb;
