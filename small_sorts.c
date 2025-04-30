@@ -3,14 +3,45 @@
 /*                                                        :::      ::::::::   */
 /*   small_sorts.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekosnick <ekosnick@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ekosnick <ekosnick@student.42.f>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/02 15:33:56 by ekosnick          #+#    #+#             */
-/*   Updated: 2025/01/28 19:42:55 by ekosnick         ###   ########.fr       */
+/*   Updated: 2025/04/29 16:27:45 by ekosnick         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+// void	sort3(t_list **sta)
+// {
+// 	int	fst;
+// 	int	sec;
+// 	int	thr;
+
+// 	// if (!sta || !*sta || !(*sta)->nt || !(*sta)->nt->nt)
+// 	// 	return ;
+// 	fst = ft_atoi((*sta)->ct);
+// 	sec = ft_atoi((*sta)->nt->ct);
+// 	thr = ft_atoi((*sta)->nt->nt->ct);
+// 	if (sorted(*sta))
+// 		return ;
+// 	if (fst < sec && fst < thr && sec > thr)
+// 	{
+// 		rra(sta);
+// 		sa(sta);
+// 	}
+// 	else if (fst > sec && sec > thr)
+// 	{
+// 		sa(sta);
+// 		rra(sta);
+// 	}
+// 	else if (fst < sec && sec > thr)
+// 		rra(sta);
+// 	else if (fst > sec && fst > thr)
+// 		ra(sta);
+// 	else
+// 		sa(sta);
+// }
 
 void	sort3(t_list **sta)
 {
@@ -20,9 +51,9 @@ void	sort3(t_list **sta)
 
 	// if (!sta || !*sta || !(*sta)->nt || !(*sta)->nt->nt)
 	// 	return ;
-	fst = ft_atoi((*sta)->ct);
-	sec = ft_atoi((*sta)->nt->ct);
-	thr = ft_atoi((*sta)->nt->nt->ct);
+	fst = (*sta)->index;
+	sec = (*sta)->nt->index;
+	thr = (*sta)->nt->nt->index;
 	if (sorted(*sta))
 		return ;
 	if (fst < sec && fst < thr && sec > thr)

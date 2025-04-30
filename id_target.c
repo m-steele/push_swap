@@ -6,7 +6,7 @@
 /*   By: ekosnick <ekosnick@student.42.f>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 12:47:41 by ekosnick          #+#    #+#             */
-/*   Updated: 2025/04/26 16:11:32 by ekosnick         ###   ########.fr       */
+/*   Updated: 2025/04/29 12:31:50 by ekosnick         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ static int	find_tget(t_list **sta, int b_index, int tget_index, int tget_id)
 {
 	t_list	*tmpa;
 	
+	tget_id = -1;/**/
+	tget_index = INT_MAX;/**/
 	tmpa = *sta;
 	while (tmpa)
 	{
@@ -26,9 +28,11 @@ static int	find_tget(t_list **sta, int b_index, int tget_index, int tget_id)
 		}
 		tmpa = tmpa->nt;
 	}
-	if (tget_index != INT_MAX)
+	// if (tget_index != INT_MAX)
+	if (tget_id != -1)
 		return (tget_id);
-	tmpa = *sta;	
+	tmpa = *sta;
+	tget_index = INT_MAX; /**/
 	while (tmpa)
 	{
 		if (tmpa->index < tget_index)
@@ -83,7 +87,7 @@ void negotiate_price(t_list **sta, t_list **stb)
 
 	tmpb = *stb;
 	tmpa = *sta;
-	sizea = ft_lstsize(tmpa);/*do we really need to add tmpa?*/
+	sizea = ft_lstsize(tmpa);
 	sizeb = ft_lstsize(tmpb);
 
 	while (tmpb)
@@ -133,26 +137,8 @@ static void	rot_n_push(t_list **sta, t_list **stb, int *costa, int *costb)
 	ptoa(sta, stb);
 }
 
-/*find cheapest move and ptoa*/
-void	pay_cheapest(t_list **sta, t_list **stb)
+void	rr_and_rrr(t_list **sta, t_list **stb, int costa, int costb)
 {
-	t_list *tmpb;
-	int		costa;
-	int		costb;
-	int		m; /*the one to move*/
-
-	tmpb = *stb;
-	m = INT_MAX;
-	while (tmpb)
-	{
-		if (ft_abs(tmpb->costfora) + ft_abs(tmpb->costforb) < ft_abs(m))
-		{
-			m = ft_abs(tmpb->costfora) + ft_abs(tmpb->costforb);
-			costa = tmpb->costfora;
-			costb = tmpb->costforb;
-		}
-		tmpb = tmpb->nt;
-	}
 	if (costa > 0 && costb > 0)
 	{
 		while (costa > 0 && costb > 0)
@@ -171,5 +157,30 @@ void	pay_cheapest(t_list **sta, t_list **stb)
 			rrr(sta, stb);
 		}
 	}
-	rot_n_push(sta, stb, &costa, &costb);
+}
+
+/*find cheapest m and ptoa*/
+void	pay_cheapest(t_list **sta, t_list **stb)
+{
+	t_list *tmpb;
+	int		costa;
+	int		costb;
+	int		m; /*the one to move*/
+
+	tmpb = *stb;
+	m = INT_MAX;
+	while (tmpb)
+	{
+		if (ft_abs(tmpb->costfora) + ft_abs(tmpb->costforb) < m /*ft_abs(m)*/)
+		{
+			m = ft_abs(tmpb->costfora) + ft_abs(tmpb->costforb);
+			costa = tmpb->costfora;
+			costb = tmpb->costforb;
+		}
+		tmpb = tmpb->nt;
+	}
+	if ((costa > 0 && costb > 0) || (costa < 0 && costb < 0))
+		rr_and_rrr(sta, stb, costa, costb);
+	else
+		rot_n_push(sta, stb, &costa, &costb);
 }

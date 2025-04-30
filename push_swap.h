@@ -6,7 +6,7 @@
 /*   By: ekosnick <ekosnick@student.42.f>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 13:50:33 by ekosnick          #+#    #+#             */
-/*   Updated: 2025/04/23 13:38:38 by ekosnick         ###   ########.fr       */
+/*   Updated: 2025/04/29 10:57:54 by ekosnick         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,8 @@ int			*find_n_smallest(t_list *sta, int n);
 int			is_in_smallest(int value, int *smallest, int n);
 
 /*find_n_biggest*/
-// int			*find_n_biggest(t_list *sta, int n);
-// int			is_in_biggest(int value, int *biggest, int n);
+int			*f_n_b(t_list *sta, int n);
+int			inb(int value, int *biggest, int n);
 
 /*push_ops*/
 // int			find_in_pos(t_list	*sta, int target);
