@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   start_sort.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekosnick <ekosnick@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ekosnick <ekosnick@student.42.f>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/10 12:20:04 by ekosnick          #+#    #+#             */
-/*   Updated: 2025/04/30 12:52:36 by ekosnick         ###   ########.fr       */
+/*   Updated: 2025/05/01 07:46:35 by ekosnick         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-static void	fin_sort(t_list **sta) /*, t_list **stb*/
+static void	fin_sort(t_list **sta)
 {
 	if (!sorted(*sta))
 	{
@@ -77,44 +77,6 @@ void	calculate_index(t_list *sta, int lstsize)
 		if (highest != NULL)
 			highest->index = lstsize;
 	}
-}
-
-void	first_ptob(t_list **sta, t_list **stb)
-{
-	int		*sm_as;
-	int		*bg_as;
-	int		n;
-	int		pushed;
-	int		i;
-
-	n = ft_lstsize(*sta);
-	sm_as = find_n_smallest(*sta, n / 2);
-	pushed = 0;
-	i = 0;
-	while (n > 5 && i < n && pushed < n / 2)
-	{
-		if (is_in_smallest(ft_atoi((*sta)->ct), sm_as, n / 2))
-		{
-			ptob(sta, stb);
-			pushed++;
-		}
-		else
-			ra(sta);
-		i++;
-	}
-	free(sm_as);
-	bg_as = f_n_b(*sta, 1);
-	while (n - pushed > 3)
-	{
-		if (inb(ft_atoi((*sta)->ct), bg_as, 1))
-			ra(sta);
-		else
-		{
-			ptob(sta, stb);
-			pushed++;
-		}
-	}
-	free(bg_as);
 }
 
 void	start_sort(t_list **sta, t_list **stb)

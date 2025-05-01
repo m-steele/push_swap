@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekosnick <ekosnick@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ekosnick <ekosnick@student.42.f>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 10:51:11 by peatjohnsto       #+#    #+#             */
-/*   Updated: 2025/04/30 13:05:34 by ekosnick         ###   ########.fr       */
+/*   Updated: 2025/05/01 07:46:05 by ekosnick         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,31 +21,20 @@
 // https://github.com/o-reo/push_swap_visualizer
 // ..push_swap/visualizer/build$ ./bin/visualizer
 
-// cleanup function
-char	**freeme(char **nums, int i)
+int	counter(char ***nums)
 {
-	if (!nums)
-		return (NULL);
-	while (i >= 0)
-		free(nums[i--]);
-	free(nums);
-	return (NULL);
-}
+	int	i;
 
-void	clean_and_exit(char **nums, int i, t_list *sta, int exit_code)
-{
-	if (nums)
-		freeme(nums, i - 1);
-	if (sta)
-		ft_lstclear(&sta, free);
-	exit(exit_code);
+	i = 0;
+	while ((*nums)[i])
+		i++;
+	return (i);	
 }
 
 int	process_beans(char ***nums, char **beans, char *delim)
 {
 	char	*joined;
 	char	*temp;
-	int		i;
 
 	if (!beans || !*beans || !delim || !nums)
 		return (0);
@@ -67,10 +56,7 @@ int	process_beans(char ***nums, char **beans, char *delim)
 	free (joined);
 	if (!*nums)
 		return (0);
-	i = 0;
-	while ((*nums)[i])
-		i++;
-	return (i);
+	return (counter(nums));
 }
 
 t_list	*fill_stack(char **nums, int len)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekosnick <ekosnick@student.42.fr>          +#+  +:+       +#+        */
+/*   By: ekosnick <ekosnick@student.42.f>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 13:50:33 by ekosnick          #+#    #+#             */
-/*   Updated: 2025/04/30 13:08:18 by ekosnick         ###   ########.fr       */
+/*   Updated: 2025/05/01 07:50:30 by ekosnick         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,10 @@ void		rrb(t_list **stb);
 void		rra_no_write(t_list **sta);
 void		rrb_no_write(t_list **stb);
 void		rrr(t_list **sta, t_list **stb);
+
+// for_the_norm
+void		first_ptob(t_list **sta, t_list **stb);
+void		clean_and_exit(char **nums, int i, t_list *sta, int exit_code);
 
 // /*moveit*/
 void		pay_cheapest(t_list **sta, t_list **stb);
